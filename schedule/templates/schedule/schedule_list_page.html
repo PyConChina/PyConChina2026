@@ -21,11 +21,8 @@
     {% endif %}
 
     <div class="schedule-content">
-        <div style="margin-bottom: 20px;">
-            <a href="ical/"
-               style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #7c3aed 0%, #b994fd 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);"
-               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.4)';"
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.3)';">
+        <div class="schedule-download">
+            <a href="ical/" class="page-button">
                 <i class="fa-solid fa-download"></i> {% translate "Download calendar (.ics)" %}
             </a>
         </div>

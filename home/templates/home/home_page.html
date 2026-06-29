@@ -1,32 +1,42 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 {% load wagtailcore_tags %}
 
 {% block extra_css %}
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=20260629-8">
 {% endblock %}
 
 {% block content %}
 <section class="banner">
     <div class="banner-content">
-        <div class="cta-buttons">
-            {% for link in page.links.all %}
-                <a href="{{ link.url }}">{{ link.title }}</a>
-            {% endfor %}
-        </div>
+        <p class="banner-kicker">AI for Good</p>
+        <h1 class="banner-title" aria-label="PyCon China 2026">
+            <span>PY</span><span>CON</span><span>CHINA</span><span>2026</span>
+        </h1>
     </div>
 </section>
-<main>
+{% if page.links.all %}
+<section class="home-highlights" aria-label="{% translate 'Conference highlights' %}">
+    {% for link in page.links.all %}
+    {% cycle 'purple' 'blue' 'red' 'yellow' 'green' as highlight_color silent %}
+    <a class="home-highlight studded highlight-{{ highlight_color }}" href="{{ link.url }}">
+        <p class="highlight-label">{% translate 'EXPLORE' %}</p>
+        <h2>{{ link.title }}</h2>
+    </a>
+    {% endfor %}
+</section>
+{% endif %}
+<main class="home-brick-wall">
     {% for block in page.body %}
-    <div class="card">
+    {% cycle 'yellow' 'blue' 'red' 'green' 'purple' as brick_color silent %}
+    <article class="card studded home-brick brick-{{ brick_color }}">
         <div class="card-header">{{ block.value.title }}</div>
         <div class="card-body">
             <div class="content">
                 {{ block.value.paragraph|richtext }}
             </div>
         </div>
-    </div>
+    </article>
     {% endfor %}
 </main>
 {% endblock %}

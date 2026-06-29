@@ -38,6 +38,23 @@ def get_span(schedule: Schedule, start_time: time) -> tuple[int, int]:
     )
 
 
+@register.simple_tag
+def get_schedule_boundaries(rooms: dict[object, list[Schedule]]) -> list[time]:
+    return sorted(
+        {
+            boundary
+            for schedules in rooms.values()
+            for schedule in schedules
+            for boundary in (schedule.start_time, schedule.end_time)
+        }
+    )
+
+
+@register.simple_tag
+def row_index(boundaries: list[time], value: time) -> int:
+    return boundaries.index(value)
+
+
 @register.filter
 def divide(value: int, by: int) -> int:
     return value // int(by)

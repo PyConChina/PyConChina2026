@@ -1,158 +1,20 @@
-/* Staff页面样式 */
-/* 使用通用的 .page-container, .page-header, .page-title 样式 */
-
-.staff-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.staff-member {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 8px 32px rgba(185, 148, 253, 0.2);
-    border: 1px solid rgba(214, 190, 248, 0.3);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.staff-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(185, 148, 253, 0.3);
-}
-
-.staff-member::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #b994fd, #d6bef8, #b994fd);
-}
-
-.staff-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    border: 4px solid #d6bef8;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(185, 148, 253, 0.2);
-}
-
-.staff-member:hover .staff-avatar {
-    border-color: #b994fd;
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(185, 148, 253, 0.4);
-}
-
-.staff-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #6b46c1;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 2px rgba(107, 70, 193, 0.1);
-}
-
-.staff-role {
-    font-size: 1.1rem;
-    color: #8b5cf6;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.staff-bio {
-    color: #4b5563;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-.staff-contact {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.staff-contact a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #b994fd 0%, #d6bef8 100%);
-    color: white;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(185, 148, 253, 0.3);
-}
-
-.staff-contact a:hover {
-    transform: translateY(-2px) scale(1.1);
-    box-shadow: 0 4px 15px rgba(185, 148, 253, 0.4);
-}
-
-.staff-section {
-    margin-bottom: 50px;
-}
-
-.staff-section-title {
-    font-size: 2rem;
-    color: #6b46c1;
-    text-align: center;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.staff-section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #b994fd, #d6bef8);
-    border-radius: 2px;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .page-container {
-        padding: 10px;
-    }
-
-    .page-title {
-        font-size: 2rem;
-        padding: 20px;
-    }
-
-    .staff-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .staff-member {
-        padding: 20px;
-    }
-
-    .staff-avatar {
-        width: 100px;
-        height: 100px;
-    }
-
-    .staff-name {
-        font-size: 1.3rem;
-    }
-
-    .staff-role {
-        font-size: 1rem;
-    }
-}
+.staff-section { margin: 52px 0; }
+.staff-section-title { display: inline-block; margin: 0 0 26px; padding: 10px 16px; border-radius: 8px; background: var(--py-blue); box-shadow: 0 6px 0 color-mix(in srgb, var(--py-blue) 68%, #000); color: var(--ink); font-family: var(--font-pixel); font-size: .82rem; font-weight: 400; }
+.staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 22px; }
+.staff-member { --brick-color: var(--paper); position: relative; min-height: 310px; padding: 30px 22px 24px; border-radius: 12px; background: var(--brick-color); background-image: linear-gradient(180deg, rgba(255,255,255,.2), transparent 40%); box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--brick-color) 68%, #000); color: var(--ink); text-align: center; transition: transform var(--ease-ui), box-shadow var(--ease-ui); }
+.staff-member:nth-child(5n + 2) { --brick-color: var(--py-yellow); }
+.staff-member:nth-child(5n + 3) { --brick-color: var(--py-blue); }
+.staff-member:nth-child(5n + 4) { --brick-color: var(--py-red); }
+.staff-member:nth-child(5n + 5) { --brick-color: var(--py-green); }
+.staff-member::before { position:absolute; top:-9px; left:20px; right:20px; height:18px; background:radial-gradient(circle at 9px center, color-mix(in srgb,var(--brick-color) 82%,#000) 0 7px,transparent 7px); background-size:30px 18px; background-repeat:repeat-x; content:""; pointer-events:none; }
+.staff-member:hover { transform: translateY(-3px); box-shadow: 0 calc(var(--brick-depth) + 3px) 0 color-mix(in srgb,var(--brick-color) 68%,#000); }
+.staff-avatar { width:112px; height:112px; margin:0 auto 18px; border-radius:50%; border:5px solid var(--paper); background:var(--paper); object-fit:cover; }
+.staff-name { margin-bottom:8px; color:inherit; font-size:1.35rem; font-weight:700; }
+.staff-role { margin-bottom:12px; color:var(--accent); font-weight:700; }
+.staff-bio { margin-bottom:16px; color:var(--ink-soft); line-height:1.6; }
+.staff-contact { display:flex; justify-content:center; gap:10px; }
+.staff-contact a { display:grid; width:44px; height:44px; place-items:center; border:2px solid var(--ink); border-radius:7px; background:transparent; color:var(--ink); text-decoration:none; transition:transform var(--ease-ui),background-color var(--ease-ui); }
+.staff-contact a:hover { background:color-mix(in srgb,var(--ink) 12%,transparent); color:var(--ink); transform:translateY(-2px); }
+.staff-contact a:active { transform:translateY(1px); }
+.staff-contact a:focus-visible { outline:3px solid var(--paper); outline-offset:3px; }
+@media (max-width:700px) { .staff-grid { grid-template-columns:1fr; } }

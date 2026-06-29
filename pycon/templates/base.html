@@ -8,8 +8,7 @@
             {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
             {% endblock %}
             {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            - PyCon China 2026
             {% endblock %}
         </title>
         {% if page.search_description %}
@@ -17,11 +16,12 @@
         {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="{% static 'images/logo.png' %}" />
+        <link rel="preload" href="{% static 'fonts/PressStart2P-Regular.ttf' %}" as="font" type="font/ttf" crossorigin />
         <!-- Open Graph meta tags -->
         <meta property="og:title" content="{% block og_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-        <meta property="og:image" content="{% block og_image %}{% static 'images/pycon2025.jpg' %}{% endblock %}" />
+        <meta property="og:image" content="{% block og_image %}{% static 'images/banner_2026.png' %}{% endblock %}" />
 
         {% if page.search_description %}
         <meta property="og:description" content="{{ page.search_description }}" />
@@ -30,7 +30,7 @@
         <!-- Twitter Card meta tags -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="{% block twitter_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
-        <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/pycon2025.jpg' %}{% endblock %}" />
+        <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/banner_2026.png' %}{% endblock %}" />
 
         {% if page.search_description %}
         <meta name="twitter:description" content="{{ page.search_description }}" />
@@ -43,7 +43,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-        <link rel="stylesheet" href="{% static 'css/pycon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/pycon.css' %}?v=20260629-2">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -56,7 +56,13 @@
 
         {% include "components/navbar.html" %}
 
-        {% block content %}{% endblock %}
+        <div class="page-shell">
+            <img class="site-corner site-corner-tl" src="{% static 'images/decor/corner-tl.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-tr" src="{% static 'images/decor/corner-tr.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-bl" src="{% static 'images/decor/corner-bl.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-br" src="{% static 'images/decor/corner-br.svg' %}" alt="" aria-hidden="true">
+            {% block content %}{% endblock %}
+        </div>
 
         {% include "components/footer.html" %}
         {# Global javascript #}

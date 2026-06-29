@@ -24,8 +24,8 @@
                     <i class="fa-solid fa-location-arrow"></i>
                     {{ page.schedule.room.name }}({{ page.schedule.room.address }})
                 </div>
-                <div class="talk-meta-item">
-                    <a href="poster/" target="_blank" class="btn btn-primary">
+                <div class="talk-meta-item talk-meta-action">
+                    <a href="poster/" target="_blank" class="talk-poster-button">
                         <i class="fa-solid fa-image"></i>
                         {% trans "Talk Poster" %}
                     </a>
@@ -59,7 +59,7 @@
 
     {% if page.abstract %}
         <div class="talk-content">
-            <h3 style="color: #6b46c1; margin-bottom: 20px;">{% translate "Abstract" %}</h3>
+            <h3 class="talk-section-title">{% translate "Abstract" %}</h3>
             <div class="talk-abstract">
                 {{ page.abstract }}
             </div>
@@ -67,7 +67,7 @@
     {% endif %}
 
     <div class="talk-content">
-        <h3 style="color: #6b46c1; margin-bottom: 20px;">{% translate "Details" %}</h3>
+        <h3 class="talk-section-title">{% translate "Details" %}</h3>
         <div class="content">
             {{ page.body|richtext }}
         </div>

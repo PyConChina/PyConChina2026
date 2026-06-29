@@ -1,16 +1,16 @@
 {% load wagtailcore_tags site i18n %}
 
-<nav class="navbar glassmorphism" id="navbar">
+<nav class="navbar" id="navbar">
     <div class="navbar-container">
         <!-- Logo/Brand Section -->
         <div class="navbar-brand">
             <a href="{% get_site_root as site_root %}{% i18n_url site_root %}" class="brand-link">
                 <div class="brand-logo">
                     {% load static %}
-                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2025" class="logo-image">
+                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2026" class="logo-image">
                     <div class="logo-text">
                         <div class="brand-name">PyCon China</div>
-                        <div class="brand-year">2025</div>
+                        <div class="brand-year">2026</div>
                     </div>
                 </div>
             </a>
@@ -105,8 +105,8 @@
         <div class="nav-mobile" id="navMobile">
             <div class="mobile-nav-header">
                 <div class="mobile-brand">
-                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2025" class="mobile-logo">
-                    <span>PyCon China 2025</span>
+                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2026" class="mobile-logo">
+                    <span>PyCon China 2026</span>
                 </div>
                 <button class="mobile-close" id="mobileClose">
                     <i class="fa-solid fa-times"></i>

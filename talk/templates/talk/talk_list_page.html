@@ -3,67 +3,6 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/talk.css' %}">
-<style>
-.talk-list-item {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 32px rgba(185, 148, 253, 0.2);
-    border: 1px solid rgba(214, 190, 248, 0.3);
-    transition: all 0.3s ease;
-}
-
-.talk-list-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(185, 148, 253, 0.3);
-}
-
-.talk-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.talk-item > div:first-child {
-    flex: 1;
-}
-
-.talk-item img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid #d6bef8;
-}
-
-.speak-by h3 {
-    color: #6b46c1;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.speak-by ul {
-    list-style: none;
-    padding: 0;
-}
-
-.speak-by li {
-    margin-bottom: 5px;
-    color: #4b5563;
-}
-
-@media (max-width: 768px) {
-    .talk-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .talk-item img {
-        margin: 0 auto;
-    }
-}
-</style>
 {% endblock %}
 
 {% block content %}
@@ -82,8 +21,8 @@
 
     {% for child in page.get_talks %}
         <div class="talk-list-item">
-            <h3 class="card-header" style="color: #6b46c1; font-size: 1.5rem; margin-bottom: 15px;">
-                <a href="{% i18n_url child %}" style="text-decoration: none; color: inherit;">{{ child.title }}</a>
+            <h3 class="card-header talk-list-title">
+                <a href="{% i18n_url child %}">{{ child.title }}</a>
                 {% include "snippets/badge.html" with page=child.specific %}
             </h3>
             <div class="content">

@@ -1,121 +1,197 @@
 .banner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background: url('../images/pycon2025.jpg') center/cover no-repeat;
-    background-attachment: fixed;
     position: relative;
-    height: 100vh;
+    display: grid;
+    min-height: min(720px, calc(100dvh - 76px));
+    place-items: center;
+    margin-bottom: 64px;
     overflow: hidden;
-    margin-bottom: 80px;
+    background-color: var(--bg-base);
+    background-image: radial-gradient(var(--bg-dot) 2.5px, transparent 2.5px);
+    background-size: 22px 22px;
 }
 
-.banner h1 {
-    font-size: 4rem; /* Adjusted to use rem units */
-    margin-bottom: 30px;
-    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+
+
+.banner-content {
     position: relative;
-    z-index: 2;
-    color: #ffffff;
-    font-weight: bold;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+    width: min(calc(100% - 32px), 940px);
+    padding: 48px 20px;
+    text-align: center;
 }
-.banner p {
-    font-size: 1.4rem; /* Adjusted to use rem units */
-    margin-bottom: 25px;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 0, 0, 0.5);
-    position: relative;
-    z-index: 2;
-    color: #ffffff;
-    font-weight: 600;
+
+.banner-kicker {
+    margin: 0;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--py-yellow);
+    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--py-yellow) 68%, #000);
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+}
+
+.banner-title {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.16em;
+    margin: 0;
+    color: var(--py-yellow);
+    font-family: var(--font-pixel);
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: clamp(1.8rem, 6vw, 4.4rem);
+    line-height: 1.35;
+    text-shadow: 3px 0 var(--ink), -3px 0 var(--ink), 0 3px var(--ink), 0 -3px var(--ink), 7px 8px 0 rgba(26, 26, 26, 0.25);
+}
+
+.banner-title span:nth-child(1) { color: var(--py-red); }
+.banner-title span:nth-child(2) { color: var(--py-orange); }
+.banner-title span:nth-child(3) { color: var(--py-blue); }
+.banner-title span:nth-child(4) {
+    color: var(--gray-pixel);
+    text-shadow: 3px 0 var(--ink), -3px 0 var(--ink), 0 3px var(--ink), 0 -3px var(--ink), 4px 4px 0 var(--ink);
+    transform: translate(2px, 2px);
 }
 
 .cta-buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    position: relative;
-    z-index: 2;
+    gap: 14px;
 }
 
 .cta-buttons > a {
-    display: inline-block;
-    padding: 15px 30px;
-    font-size: 1.2rem; /* Adjusted to use rem units */
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    --brick-color: var(--py-yellow);
+    border: 0;
+    border-radius: 9px;
+    background: var(--brick-color);
+    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--brick-color) 68%, #000);
+    color: var(--ink);
+    font-weight: 700;
     text-decoration: none;
-    color: #ffffff;
-    background: linear-gradient(135deg, #7c3aed 0%, #b994fd 100%);
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    position: relative;
-    overflow: hidden;
 }
 
-.cta-buttons > a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.cta-buttons > a:hover::before {
-    left: 100%;
-}
+.cta-buttons > a:nth-child(2n) { background: var(--py-blue); }
+.cta-buttons > a:nth-child(2n) { --brick-color: var(--py-blue); }
+.cta-buttons > a:nth-child(3n) { --brick-color: var(--py-red); }
 
 .cta-buttons > a:hover {
-    background: linear-gradient(135deg, #8b5cf6 0%, #d6bef8 100%);
-    color: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
-    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 calc(var(--brick-depth) + 3px) 0 color-mix(in srgb, var(--brick-color) 68%, #000);
+    color: var(--ink);
+    transform: translate(2px, 2px);
 }
 
-/* 卡片进入动画 */
-.card {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideInUp 0.6s ease-out forwards;
+.home-brick-wall {
+    column-count: 1;
+    width: min(calc(100% - 48px), 1080px);
+    padding: 26px 0 80px;
 }
 
-.card:nth-child(2) { animation-delay: 0.1s; }
-.card:nth-child(3) { animation-delay: 0.2s; }
-.card:nth-child(4) { animation-delay: 0.3s; }
-.card:nth-child(5) { animation-delay: 0.4s; }
-
-@keyframes slideInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.home-highlights {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr 1fr;
+    gap: 22px;
+    width: min(calc(100% - 48px), 1080px);
+    margin: 0 auto;
+    padding: 32px 0 12px;
 }
 
-/* 移动端优化 */
-@media (max-width: 480px) {
+.home-highlight {
+    --brick-color: var(--py-yellow);
+    --brick-on: var(--ink);
+    position: relative;
+    min-height: 190px;
+    padding: 30px 24px 24px;
+    border-radius: 12px;
+    background: var(--brick-color);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 38%);
+    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--brick-color) 68%, #000);
+    color: var(--brick-on);
+}
+
+.home-highlight::before,
+.home-highlight::after {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    background-repeat: repeat-x;
+    background-size: 30px 18px;
+    content: "";
+    pointer-events: none;
+}
+
+.home-highlight::before {
+    top: -9px;
+    height: 18px;
+    background-image: radial-gradient(circle at 9px center, color-mix(in srgb, var(--brick-color) 82%, #000) 0 7px, transparent 7px);
+}
+
+.home-highlight::after {
+    top: -9px;
+    height: 9px;
+    background-image: radial-gradient(circle at 9px 4px, rgba(255, 255, 255, 0.35) 0 5px, transparent 5px);
+}
+
+.home-highlight h2 { color: inherit; font-size: 1.35rem; }
+.home-highlight p { margin: 0; }
+.highlight-label { margin-bottom: 10px !important; font-family: var(--font-pixel); font-size: 0.62rem; }
+.home-highlight { text-decoration: none; }
+.highlight-purple { --brick-color: var(--py-purple); --brick-on: var(--brick-on-dark); transform: translateY(16px); }
+.highlight-blue { --brick-color: var(--py-blue); }
+.highlight-red { --brick-color: var(--py-red); --brick-on: var(--brick-on-light); transform: translateY(28px); }
+.highlight-yellow { --brick-color: var(--py-yellow); }
+.highlight-green { --brick-color: var(--py-green); }
+
+.home-brick-wall .home-brick {
+    break-inside: avoid;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 30px;
+}
+
+
+.brick-yellow { --brick-color: var(--py-yellow); --brick-on: var(--brick-on-light); }
+.brick-blue { --brick-color: var(--py-blue); --brick-on: var(--brick-on-light); }
+.brick-red { --brick-color: var(--py-red); --brick-on: var(--brick-on-light); }
+.brick-green { --brick-color: var(--py-green); --brick-on: var(--brick-on-light); }
+.brick-purple { --brick-color: var(--py-purple); --brick-on: var(--brick-on-dark); }
+
+.home-brick .card-body {
+    padding: 14px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.88);
+}
+
+@media (max-width: 900px) {
+    .home-highlights { grid-template-columns: 1fr 1fr; }
+    .home-highlight:last-child { grid-column: 1 / -1; transform: none; }
+}
+
+@media (max-width: 560px) {
     .banner {
-        padding: 120px 15px 80px;
-        min-height: 70vh;
+        min-height: 520px;
+        background-position: center;
     }
 
-    .banner h1 {
-        font-size: 2rem;
+    .banner-title {
+        gap: 0.28em;
+        font-size: 1.45rem;
     }
 
-    .banner p {
-        font-size: 1rem;
-    }
 
-    .cta-buttons > a {
-        padding: 12px 24px;
-        font-size: 1rem;
-    }
+    .home-brick-wall { width: min(calc(100% - 28px), 640px); }
+
+    .home-highlights { grid-template-columns: 1fr; width: min(calc(100% - 28px), 640px); }
+    .highlight-purple,
+    .highlight-red { transform: none; }
 }
-
-
