@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="banner">
+    <div class="banner-content">
+        <div class="cta-buttons">
+            {% for link in page.links.all %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<main>
+    {% for block in page.body %}
+    <div class="card">
+        <div class="card-header">{{ block.value.title }}</div>
+        <div class="card-body">
+            <div class="content">
+                {{ block.value.paragraph|richtext }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+{% endblock %}

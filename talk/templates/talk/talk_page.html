@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+{% endblock %}
+
+{% block og_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
+{% block twitter_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <header class="talk-header">
+        <h1 class="talk-title">{{ page.title }}</h1>
+        {% include "snippets/badge.html" %}
+
+        {% if page.schedule %}
+            <div class="talk-meta">
+                <div class="talk-meta-item">
+                    <i class="fa-solid fa-clock"></i>
+                    {{ page.schedule.start_time }} - {{ page.schedule.end_time }}
+                </div>
+                <div class="talk-meta-item">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    {{ page.schedule.room.name }}({{ page.schedule.room.address }})
+                </div>
+                <div class="talk-meta-item">
+                    <a href="poster/" target="_blank" class="btn btn-primary">
+                        <i class="fa-solid fa-image"></i>
+                        {% trans "Talk Poster" %}
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+    </header>
+
+    <div class="talk-content">
+        <ul class="authors">
+            {% for author in page.authors.all %}
+                <li class="author">
+                    <div>
+                        <div class="author-info">
+                            <span class="author-name">{{ author.name }}</span>
+                            {% if author.bio %}
+                                <span class="author-company">{{ author.bio }}</span>
+                            {% endif %}
+                        </div>
+                        {% if author.introduction %}
+                            <div class="author-bio">{{ author.introduction|richtext }}</div>
+                        {% endif %}
+                    </div>
+                    {% if author.avatar %}
+                        {% image author.avatar fill-120x120 class="author-avatar" %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if page.abstract %}
+        <div class="talk-content">
+            <h3 style="color: #6b46c1; margin-bottom: 20px;">{% translate "Abstract" %}</h3>
+            <div class="talk-abstract">
+                {{ page.abstract }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="talk-content">
+        <h3 style="color: #6b46c1; margin-bottom: 20px;">{% translate "Details" %}</h3>
+        <div class="content">
+            {{ page.body|richtext }}
+        </div>
+    </div>
+</div>
+{% endblock %}

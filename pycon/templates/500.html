@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% translate "Internal server error" %}{% endblock %}
+
+{% block body_class %}template-500{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="talk-container">
+    <header class="talk-header">
+        <h1 class="talk-title">500</h1>
+        <div style="font-size: 1.2rem; margin-top: 10px; opacity: 0.9;">
+            {% translate "Internal server error" %}
+        </div>
+    </header>
+
+    <div class="talk-content" style="text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 20px; opacity: 0.3;">
+            🔧
+        </div>
+        <p style="font-size: 1.1rem; color: #6b5563; margin-bottom: 30px;">
+            {% translate "Sorry, the server encountered an issue. Please try again later." %}
+        </p>
+        <a href="/" class="page-button">
+            <i class="fa-solid fa-home"></i> {% translate "Return to homepage" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

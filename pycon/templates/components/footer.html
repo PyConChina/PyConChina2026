@@ -1,0 +1,113 @@
+{% load i18n site %}
+<footer class="modern-footer">
+    <div class="footer-background"></div>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <!-- 品牌区域 -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    {% load static %}
+                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2025" class="footer-logo-img">
+                    <div class="footer-brand-text">
+                        <h3 class="footer-title">PyCon China 2025</h3>
+                        <p class="footer-subtitle">中国 Python 开发者大会</p>
+                    </div>
+                </div>
+
+                <!-- 社交媒体链接 -->
+                {% with social_links=settings.base.NavigationSettings.social_links %}
+                    {% if social_links.exists %}
+                        <div class="social-links">
+                            {% for link in social_links.all %}
+                                <a href="{{ link.url }}" class="social-link" aria-label="{{ link.name }}" target="_blank">
+                                    <i class="{{ link.icon }}"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <!-- 往届大会 -->
+            <div class="footer-section">
+                <h4 class="section-title">{% translate "Previous Conferences" %}</h4>
+                <div class="conferences-grid">
+                    <a href="https://cn.pycon.org/2024/" target="_blank" class="conference-link">2024</a>
+                    <a href="https://cn.pycon.org/2023/" target="_blank" class="conference-link">2023</a>
+                    <a href="https://cn.pycon.org/2022/" target="_blank" class="conference-link">2022</a>
+                    <a href="https://cn.pycon.org/2021/" target="_blank" class="conference-link">2021</a>
+                    <a href="https://cn.pycon.org/2020/" target="_blank" class="conference-link">2020</a>
+                    <a href="https://cn.pycon.org/2019/" target="_blank" class="conference-link">2019</a>
+                    <a href="https://cn.pycon.org/2018/" target="_blank" class="conference-link">2018</a>
+                    <a href="https://cn.pycon.org/2017/" target="_blank" class="conference-link">2017</a>
+                    <a href="https://cn.pycon.org/2016/" target="_blank" class="conference-link">2016</a>
+                    <a href="https://cn.pycon.org/2015/" target="_blank" class="conference-link">2015</a>
+                    <a href="https://cn.pycon.org/2014/" target="_blank" class="conference-link">2014</a>
+                    <a href="https://cn.pycon.org/2013/" target="_blank" class="conference-link">2013</a>
+                    <a href="https://cn.pycon.org/2012/" target="_blank" class="conference-link">2012</a>
+                    <a href="https://cn.pycon.org/2011/" target="_blank" class="conference-link">2011</a>
+                </div>
+            </div>
+
+            <!-- 快速链接 -->
+            {% get_coc_page as coc_page %}
+            <div class="footer-section">
+                <h4 class="section-title">{% translate "Quick links" %}</h4>
+                <div class="quick-links">
+                  {% if coc_page %}
+                    <a href="{% i18n_url coc_page %}" class="quick-link">
+                        <i class="fa-solid fa-code"></i>
+                        <span>{{ coc_page.title }}</span>
+                    </a>
+                  {% endif %}
+                    <a href="https://jsj.top/f/bBjpo3" class="quick-link" target="_blank">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span>{% translate "Call for Papers" %}</span>
+                    </a>
+                    <a href="https://jsj.top/f/HXOlTX" class="quick-link" target="_blank">
+                        <i class="fa-solid fa-hands-helping"></i>
+                        <span>{% translate "Volunteer Recruitment" %}</span>
+                    </a>
+                    <a href="https://up.fming.dev/status/pycon" class="quick-link" target="_blank">
+                        <i class="fa-solid fa-signal"></i>
+                        <span>Status Page</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 联系信息 -->
+            <div class="footer-section">
+                <h4 class="section-title">{% translate "Contact Information" %}</h4>
+                <div class="contact-info">
+                    <div class="quick-links">
+                        <a class="quick-link" href="mailto:conference@python-china.org.cn">
+                            <i class="fa-solid fa-envelope"></i>
+                            {% translate "Email" %}
+                        </a>
+                    </div>
+                    <div class="quick-links">
+                        <a class="quick-link" href="https://pychina.org" target="_blank">
+                            <i class="fa-solid fa-globe"></i>
+                            pychina.org
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部版权信息 -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; 2025 PyCon China. {% translate "All rights reserved." %}</p>
+                </div>
+                <div class="footer-tech">
+                    <span>{% translate "Powered by Python & Wagtail" %}</span>
+                    <div class="tech-icons">
+                        <i class="fab fa-python"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

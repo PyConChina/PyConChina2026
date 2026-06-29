@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/staff.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">{{ page.title }}</h1>
+        {% if page.body %}
+            <div class="content">
+                {{ page.body|richtext }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% for category in page.staff_categories.all %}
+    <div class="staff-section">
+        <h2 class="staff-section-title">{{ category.name }}</h2>
+        <div class="staff-grid">
+            {% for staff in category.staff.all %}
+                <div class="staff-member">
+                    {% if staff.avatar %}
+                        {% image staff.avatar fill-240x240 class="staff-avatar" %}
+                    {% endif %}
+                    <div class="staff-name">{{ staff.name }}</div>
+                    {% if staff.bio %}
+                        <div class="staff-role">{{ staff.bio }}</div>
+                    {% endif %}
+                    <div class="staff-contact">
+                        <a href="#" title="{% translate 'Contact' %}">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,183 @@
+{% load wagtailcore_tags site i18n %}
+
+<nav class="navbar glassmorphism" id="navbar">
+    <div class="navbar-container">
+        <!-- Logo/Brand Section -->
+        <div class="navbar-brand">
+            <a href="{% get_site_root as site_root %}{% i18n_url site_root %}" class="brand-link">
+                <div class="brand-logo">
+                    {% load static %}
+                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2025" class="logo-image">
+                    <div class="logo-text">
+                        <div class="brand-name">PyCon China</div>
+                        <div class="brand-year">2025</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="nav-desktop">
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="{% i18n_url site_root %}" class="nav-link">
+                        <i class="fa-solid fa-home nav-icon"></i>
+                        <span class="nav-text">{% translate "Home" %}</span>
+                    </a>
+                </li>
+                {# Top-level: keep only special items as direct links #}
+                {% for child in site_root.get_children.live.in_menu %}
+                    {% if child.slug in "talks,schedule,staff,supporter" %}
+                        <li class="nav-item">
+                            <a href="{% i18n_url child %}" class="nav-link">
+                                {% if child.slug == "talks" %}
+                                    <i class="fa-solid fa-microphone nav-icon"></i>
+                                {% elif child.slug == "schedule" %}
+                                    <i class="fa-solid fa-calendar nav-icon"></i>
+                                {% elif child.slug == "staff" %}
+                                    <i class="fa-solid fa-users nav-icon"></i>
+                                {% elif child.slug == "supporter" %}
+                                    <i class="fa-solid fa-handshake nav-icon"></i>
+                                {% endif %}
+                                <span class="nav-text">{{ child.title }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {# Desktop dropdown: collect all other items under "Activities" #}
+                <li class="nav-item language-switch">
+                    <div class="language-dropdown">
+                        <button class="language-btn dropdown-toggle" id="activitiesDropdown">
+                            <i class="fa-solid fa-puzzle-piece nav-icon"></i>
+                            <span class="nav-text">{% translate "Activities" %}</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="language-dropdown-menu" id="activitiesDropdownMenu">
+                            {% for child in site_root.get_children.live.in_menu %}
+                                {% if child.slug not in "talks,schedule,staff,supporter" %}
+                                    <a href="{% i18n_url child %}" class="language-option">
+                                        <i class="fa-solid fa-file-alt option-check" style="opacity:1"></i>
+                                        <span>{{ child.title }}</span>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Language Switch -->
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_translations page as translations %}
+                <li class="nav-item language-switch">
+                    <div class="language-dropdown">
+                        <button class="language-btn dropdown-toggle" id="languageDropdown">
+                            <i class="fa-solid fa-globe nav-icon"></i>
+                            <span class="nav-text">
+                                {{ LANGUAGE_CODE|language_name_local }}
+                            </span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        <div class="language-dropdown-menu" id="languageDropdownMenu">
+                            {% for translation in translations %}
+                            <a href="{% i18n_url translation %}"
+                               class="language-option {% if LANGUAGE_CODE == translation.locale.language_code %}active{% endif %}">
+                                <i class="fa-solid fa-check option-check"></i>
+                                <span>{{ translation.locale.language_name_local }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="nav-mobile" id="navMobile">
+            <div class="mobile-nav-header">
+                <div class="mobile-brand">
+                    <img src="{% static 'images/logo.png' %}" alt="PyCon China 2025" class="mobile-logo">
+                    <span>PyCon China 2025</span>
+                </div>
+                <button class="mobile-close" id="mobileClose">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <ul class="mobile-nav-links">
+                <li class="mobile-nav-item">
+                    <a href="{% i18n_url site_root %}" class="mobile-nav-link">
+                        <i class="fa-solid fa-home nav-icon"></i>
+                        <span>{% translate "Home" %}</span>
+                    </a>
+                </li>
+                {# Mobile: render special items first #}
+                {% for child in site_root.get_children.live.in_menu %}
+                    {% if child.slug in "talks,schedule,staff,supporter" %}
+                        <li class="mobile-nav-item">
+                            <a href="{% i18n_url child %}" class="mobile-nav-link">
+                                {% if child.slug == "talks" %}
+                                    <i class="fa-solid fa-microphone nav-icon"></i>
+                                {% elif child.slug == "schedule" %}
+                                    <i class="fa-solid fa-calendar nav-icon"></i>
+                                {% elif child.slug == "staff" %}
+                                    <i class="fa-solid fa-users nav-icon"></i>
+                                {% elif child.slug == "supporter" %}
+                                    <i class="fa-solid fa-handshake nav-icon"></i>
+                                {% endif %}
+                                <span>{{ child.title }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {# Mobile: activities group header #}
+                <li class="mobile-nav-item language-switch-mobile">
+                    <div class="mobile-language-header">
+                        <i class="fa-solid fa-puzzle-piece nav-icon"></i>
+                        <span>{% translate "Activities" %}</span>
+                    </div>
+                </li>
+                {# Mobile: activities items #}
+                {% for child in site_root.get_children.live.in_menu %}
+                    {% if child.slug not in "talks,schedule,staff,supporter" %}
+                        <li class="mobile-nav-item mobile-language-item">
+                            <a href="{% i18n_url child %}" class="mobile-nav-link">
+                                <i class="fa-solid fa-file-alt nav-icon"></i>
+                                <span>{{ child.title }}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <!-- Mobile Language Switch -->
+                <li class="mobile-nav-item language-switch-mobile">
+                    <div class="mobile-language-header">
+                        <i class="fa-solid fa-globe nav-icon"></i>
+                        <span>{% translate "Language" %}</span>
+                    </div>
+                </li>
+                {% for translation in translations %}
+                <li class="mobile-nav-item mobile-language-item">
+                    <a href="{% i18n_url translation %}"
+                       class="mobile-nav-link mobile-language-link {% if LANGUAGE_CODE == translation.locale.language_code %}active{% endif %}">
+                        <i class="fa-solid fa-check option-check"></i>
+                        <span>{{ translation.locale.language_name_local }}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+</nav>

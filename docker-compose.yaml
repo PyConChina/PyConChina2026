@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pycon_app
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - SITE_DOMAIN=${SITE_DOMAIN}
+    volumes:
+      - /data/pycon/2025:/app/data
+      - /data/pycon/db.sqlite3:/app/db.sqlite3
+    expose:
+      - "8000"
+    networks:
+      - pycon_network
+
+  nginx:
+    image: nginx:alpine
+    container_name: pycon_nginx
+    ports:
+      - "5678:5678"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /data/pycon:/data/pycon:ro
+    depends_on:
+      - app
+    networks:
+      - pycon_network
+
+networks:
+  pycon_network:
+    driver: bridge

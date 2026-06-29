@@ -1,0 +1,183 @@
+/* Talk页面样式 */
+/* 使用通用的 .page-container, .page-header, .page-title 样式 */
+
+.talk-header {
+    background: linear-gradient(135deg, #b994fd 0%, #d6bef8 100%);
+    color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(185, 148, 253, 0.3);
+}
+
+.talk-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(107, 70, 193, 0.5);
+}
+
+.talk-meta {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.talk-meta-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.authors {
+    list-style: none;
+    padding: 0;
+    margin-top: 30px;
+}
+
+.author {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(185, 148, 253, 0.1);
+    border: 1px solid rgba(214, 190, 248, 0.3);
+    transition: all 0.3s ease;
+}
+
+.author:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(185, 148, 253, 0.2);
+}
+
+.author > div:first-child {
+    flex-grow: 1;
+}
+
+.author-info {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 10px;
+}
+
+.author-name {
+    font-weight: bold;
+    font-size: 1.75em;
+    color: #6b46c1;
+    text-shadow: 1px 1px 2px rgba(107, 70, 193, 0.1);
+}
+
+.author-company {
+    color: #8b5cf6;
+    font-weight: 600;
+}
+
+.author-bio {
+    color: #4b5563;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-left: 20px;
+    border: 3px solid #d6bef8;
+    transition: all 0.3s ease;
+}
+
+.author-avatar:hover {
+    border-color: #b994fd;
+    transform: scale(1.05);
+}
+
+.talk-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(185, 148, 253, 0.2);
+    border: 1px solid rgba(214, 190, 248, 0.3);
+}
+
+.talk-abstract {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #374151;
+}
+
+.talk-outline {
+    margin-top: 30px;
+}
+
+.talk-outline h3 {
+    color: #6b46c1;
+    border-bottom: 2px solid #d6bef8;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.talk-outline ul {
+    list-style: none;
+    padding: 0;
+}
+
+.talk-outline li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(214, 190, 248, 0.2);
+    position: relative;
+    padding-left: 20px;
+}
+
+.talk-outline li:before {
+    content: "▶";
+    color: #b994fd;
+    position: absolute;
+    left: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .page-container {
+        padding: 10px;
+    }
+
+    .talk-header {
+        padding: 30px 20px;
+    }
+
+    .talk-title {
+        font-size: 2rem;
+    }
+
+    .talk-meta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .author {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .author-avatar {
+        margin: 0 auto 15px;
+    }
+
+    .author-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+}

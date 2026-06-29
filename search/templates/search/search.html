@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags i18n %}
+
+{% block body_class %}template-searchresults{% endblock %}
+
+{% block title %}{% translate "Search" %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">{% translate "Search" %}</h1>
+    </div>
+
+    <div class="search-form">
+        <form action="{% url 'search' %}" method="get">
+            <div class="search-input-group">
+                <input type="text" name="query" class="search-input"
+                       placeholder="{% translate 'Enter search keywords...' %}"
+                       {% if search_query %}value="{{ search_query }}"{% endif %}>
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-search"></i> {% translate "Search" %}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if search_results %}
+    <div class="search-results">
+        {% for result in search_results %}
+        <div class="search-result-item">
+            <a href="{% pageurl result %}" class="search-result-title">{{ result }}</a>
+            {% if result.search_description %}
+                <div class="search-result-snippet">{{ result.search_description }}</div>
+            {% endif %}
+            <div class="search-result-meta">{{ result.content_type.model|title }}</div>
+        </div>
+        {% endfor %}
+
+        <div class="search-pagination">
+            {% if search_results.has_previous %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}"
+                   class="search-button">{% translate "Previous page" %}</a>
+            {% endif %}
+
+            {% if search_results.has_next %}
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}"
+                   class="search-button">{% translate "Next page" %}</a>
+            {% endif %}
+        </div>
+    </div>
+    {% elif search_query %}
+    <div class="search-no-results">
+        <div>
+            <i class="fa-solid fa-search"></i>
+        </div>
+        <div>{% translate "No results found" %}</div>
+        <div style="margin-top: 10px; font-size: 1rem; opacity: 0.7;">
+            {% translate "Try searching with different keywords" %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

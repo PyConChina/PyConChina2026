@@ -1,0 +1,69 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        {% if page.search_description %}
+        <meta name="description" content="{{ page.search_description }}" />
+        {% endif %}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="{% static 'images/logo.png' %}" />
+        <!-- Open Graph meta tags -->
+        <meta property="og:title" content="{% block og_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+        <meta property="og:image" content="{% block og_image %}{% static 'images/pycon2025.jpg' %}{% endblock %}" />
+
+        {% if page.search_description %}
+        <meta property="og:description" content="{{ page.search_description }}" />
+        {% endif %}
+
+        <!-- Twitter Card meta tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{% block twitter_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
+        <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/pycon2025.jpg' %}{% endblock %}" />
+
+        {% if page.search_description %}
+        <meta name="twitter:description" content="{{ page.search_description }}" />
+        {% endif %}
+
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+
+        {# Global stylesheets #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'css/pycon.css' %}">
+
+        {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+        <script defer src="https://umami.fming.dev/script.js" data-website-id="8150669f-a17b-4fcd-8ec1-c94e542226d2"></script>
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        {% include "components/navbar.html" %}
+
+        {% block content %}{% endblock %}
+
+        {% include "components/footer.html" %}
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/pycon.js' %}"></script>
+
+        {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+        {% endblock %}
+    </body>
+</html>

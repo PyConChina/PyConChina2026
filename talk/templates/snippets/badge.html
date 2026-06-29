@@ -1,0 +1,13 @@
+{% load i18n %}
+
+<span class="talk-badge {{ page.type }}">
+    {% if page.type == 'lightning' %}
+        <i class="fa-solid fa-bolt"></i> {% translate "Lightning" %}
+    {% elif page.type == 'keynote' %}
+        <i class="fa-solid fa-medal"></i> {% translate "Keynote" %}
+    {% elif page.type == 'roundtable' %}
+        <i class="fa-solid fa-users"></i> {% translate "Roundtable" %}
+    {% elif page.type == 'workshop' %}
+        <i class="fa-solid fa-tools"></i> {% translate "Workshop" %}
+    {% endif %}
+</span>

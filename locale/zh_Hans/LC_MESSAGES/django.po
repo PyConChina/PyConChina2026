@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-10 10:22+0800\n"
+"PO-Revision-Date: 2025-01-16 10:00+0800\n"
+"Last-Translator: PyConChina Team <contact@pycon.org.cn>\n"
+"Language-Team: Chinese Simplified <zh-hans@li.org>\n"
+"Language: zh-Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: pycon/templates/404.html:4 pycon/templates/404.html:17
+msgid "Page not found"
+msgstr "页面未找到"
+
+#: pycon/templates/404.html:26
+msgid "Sorry, the page you are looking for does not exist or has been moved."
+msgstr "抱歉，您要查找的页面不存在或已被移动。"
+
+#: pycon/templates/404.html:29 pycon/templates/500.html:29
+msgid "Return to homepage"
+msgstr "返回首页"
+
+#: pycon/templates/500.html:4 pycon/templates/500.html:17
+msgid "Internal server error"
+msgstr "内部服务器错误"
+
+#: pycon/templates/500.html:26
+msgid "Sorry, the server encountered an issue. Please try again later."
+msgstr "抱歉，服务器遇到问题。请稍后再试。"
+
+#: pycon/templates/components/footer.html:33
+msgid "Previous Conferences"
+msgstr "往届大会"
+
+#: pycon/templates/components/footer.html:55
+msgid "Quick links"
+msgstr "快速链接"
+
+#: pycon/templates/components/footer.html:65
+msgid "Call for Papers"
+msgstr "主题征集"
+
+#: pycon/templates/components/footer.html:69
+msgid "Volunteer Recruitment"
+msgstr "志愿者招募"
+
+#: pycon/templates/components/footer.html:76
+msgid "Contact Information"
+msgstr "联系方式"
+
+#: pycon/templates/components/footer.html:81
+msgid "Email"
+msgstr "邮箱"
+
+#: pycon/templates/components/footer.html:98
+msgid "All rights reserved."
+msgstr "保留所有权利。"
+
+#: pycon/templates/components/footer.html:101
+msgid "Powered by Python & Wagtail"
+msgstr "由 Python 和 Wagtail 驱动"
+
+#: pycon/templates/components/navbar.html:25
+#: pycon/templates/components/navbar.html:119
+msgid "Home"
+msgstr "首页"
+
+#: pycon/templates/components/navbar.html:53
+#: pycon/templates/components/navbar.html:146
+msgid "Activities"
+msgstr "活动"
+
+#: pycon/templates/components/navbar.html:165
+msgid "Language"
+msgstr "语言"
+
+#: schedule/models.py:50
+msgid "Main Venue"
+msgstr "主会场"
+
+#: schedule/models.py:60 talk/templates/talk/talk_list_page.html:94
+msgid "Speaker"
+msgstr "演讲者"
+
+#: schedule/templates/schedule/schedule_list_page.html:29
+msgid "Download calendar (.ics)"
+msgstr "下载日历 (.ics)"
+
+#: schedule/templates/snippets/schedule.html:12
+msgid "Host"
+msgstr "主持人"
+
+#: search/templates/search/search.html:6 search/templates/search/search.html:15
+#: search/templates/search/search.html:25
+msgid "Search"
+msgstr "搜索"
+
+#: search/templates/search/search.html:22
+msgid "Enter search keywords..."
+msgstr "请输入搜索关键词..."
+
+#: search/templates/search/search.html:46
+msgid "Previous page"
+msgstr "上一页"
+
+#: search/templates/search/search.html:51
+msgid "Next page"
+msgstr "下一页"
+
+#: search/templates/search/search.html:60
+msgid "No results found"
+msgstr "未找到结果"
+
+#: search/templates/search/search.html:62
+msgid "Try searching with different keywords"
+msgstr "请尝试使用不同的关键词搜索"
+
+#: staff/templates/staff/staff_page.html:34
+msgid "Contact"
+msgstr "联系"
+
+#: talk/templates/snippets/badge.html:5
+msgid "Lightning"
+msgstr "闪电演讲"
+
+#: talk/templates/snippets/badge.html:7
+msgid "Keynote"
+msgstr "主题演讲"
+
+#: talk/templates/snippets/badge.html:9
+msgid "Roundtable"
+msgstr "圆桌讨论"
+
+#: talk/templates/snippets/badge.html:11
+msgid "Workshop"
+msgstr "工作坊"
+
+#: talk/templates/talk/talk_page.html:30
+msgid "Talk Poster"
+msgstr "生成海报"
+
+#: talk/templates/talk/talk_page.html:62
+msgid "Abstract"
+msgstr "摘要"
+
+#: talk/templates/talk/talk_page.html:70
+msgid "Details"
+msgstr "详情"
+
+#~ msgid "Code of Conduct"
+#~ msgstr "行为准则"

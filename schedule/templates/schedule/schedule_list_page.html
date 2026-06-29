@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="schedule-page-container">
+    <header class="page-header">
+        <h1 class="page-title">{{ page.title }}</h1>
+    </header>
+
+    {% if page.body %}
+        <div class="talk-content">
+            <div class="content">
+                {{ page.body|richtext }}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="schedule-content">
+        <div style="margin-bottom: 20px;">
+            <a href="ical/"
+               style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #7c3aed 0%, #b994fd 100%); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);"
+               onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(139, 92, 246, 0.4)';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(124, 58, 237, 0.3)';">
+                <i class="fa-solid fa-download"></i> {% translate "Download calendar (.ics)" %}
+            </a>
+        </div>
+        {% for date, rooms in page.grouped_schedules.items %}
+            {% include "snippets/schedule.html" %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

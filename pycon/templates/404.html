@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% translate "Page not found" %}{% endblock %}
+
+{% block body_class %}template-404{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <header class="page-header">
+        <h1 class="page-title">404</h1>
+        <div style="font-size: 1.2rem; margin-top: 10px; opacity: 0.9; color: white;">
+            {% translate "Page not found" %}
+        </div>
+    </header>
+
+    <div class="talk-content" style="text-align: center;">
+        <div style="font-size: 4rem; margin-bottom: 20px; opacity: 0.3;">
+            🔍
+        </div>
+        <p style="font-size: 1.1rem; color: #6b5563; margin-bottom: 30px;">
+            {% translate "Sorry, the page you are looking for does not exist or has been moved." %}
+        </p>
+        <a href="/2025/" class="page-button">
+            <i class="fa-solid fa-home"></i> {% translate "Return to homepage" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/supporter.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-container">
+    <div class="page-header">
+        <h1 class="page-title">{{ page.title }}</h1>
+        {% if page.body %}
+            <div class="content">
+                {{ page.body|richtext }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% for tier in page.supporters.all %}
+    <div class="supporter-section">
+        <h2 class="supporter-section-title">{{ tier.name }}</h2>
+        <div class="supporter-grid">
+            {% for supporter in tier.supporters.all %}
+                <div class="supporter-member">
+                    <a href="{{ supporter.url|default:'#' }}" {% if supporter.url %}target="_blank"{% endif %} class="supporter-link">
+                        {% if supporter.logo %}
+                            {% image supporter.logo width-240 class="supporter-logo" %}
+                        {% endif %}
+                        <div class="supporter-name">{{ supporter.name }}</div>
+                        {% if supporter.description %}
+                            <div class="supporter-description">{{ supporter.description }}</div>
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

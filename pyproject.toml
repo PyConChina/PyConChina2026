@@ -1,0 +1,28 @@
+[project]
+name = "PyConChina"
+version = "2025.0"
+description = "PyCon China 2025 大会官网"
+authors = [
+    {name = "Frost Ming", email = "me@frostming.com"},
+]
+dependencies = [
+    "wagtail>=7",
+    "gunicorn>=23.0.0",
+    "wagtail-bakery>=0.8.0",
+    "ics-vtimezones>=2020.2",
+    "ics @ git+https://github.com/ics-py/ics-py.git@main",
+    "dj-database-url>=3.0.0",
+    "pillow>=11.2.1",
+]
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+migrate = "python manage.py migrate --noinput"
+dev = "python manage.py runserver"
+preview = "python manage.py buildserver"
+build = "python manage.py build"
