@@ -14,6 +14,8 @@
 .talk-list-item { margin-bottom:28px; }
 .talk-list-title { color:var(--accent); font-size:1.45rem; }
 .talk-list-title a { color:inherit; text-decoration:none; }
+/* Large bold text (1.45rem/700): accent-bright at 3.15 meets AA-large (3.0). */
+.talk-list-title a:hover { color:var(--accent-bright); }
 .talk-item { display:flex; align-items:flex-start; gap:20px; }
 .talk-item > div:first-child { flex:1; }
 .talk-item img { width:112px; height:112px; border:5px solid var(--py-yellow); border-radius:50%; object-fit:cover; }

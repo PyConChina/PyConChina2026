@@ -74,6 +74,11 @@
 - **四角装饰**:`base.html` 的 `.page-shell{position:relative}` 内四个 SVG 精灵
   (`pycon/static/images/decor/corner-*.svg`,矢量透明,由脚本生成),
   `position:absolute` 贴边(offset 0)、`z-index:1`、`pointer-events:none`、≤700px 隐藏。
+  **风格 = banner 参考图的扁平像素风**(2026-07-02 对齐):积木 = 扁平色块 + 顶部小方块 studs +
+  底部深色条,**无描边**;黄色四分之一圆"管道"角块;蛇 = 连续粗折线 S 身 + 浅色虚线花纹 + 方块头。
+  禁止卡通描边/光泽风(被 Frost 否决的旧版)。
+- **Banner 标题逐字配色**(从 banner 采样):P红 Y黄 C蓝 O米黄(#f5dc85) N紫 / C紫 H蓝 I黄 N红 A米黄;
+  "2026" 灰 #adb0b5 + 浮雕(亮左上/暗右下 text-shadow);字母 8 向 3px ink 黑描边 + 柔和投影(Frost 2026-07-02 定版;曾试无描边被否)。
 - **日程表**:boundary-index 网格——当天所有 start/end 去重排序 → 行号;
   `grid-auto-rows: minmax(104px, auto)`(行高不按时长正比);房间表头 `grid-row:1`;
   主会场 `grid-column: 1 / -1`;蓝砖 item 上时间标签用 ink。

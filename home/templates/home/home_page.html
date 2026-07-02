@@ -3,7 +3,7 @@
 {% load wagtailcore_tags %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}?v=20260702-3">
+<link rel="stylesheet" href="{% static 'css/home.css' %}?v=20260702-6">
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,10 @@
     <div class="banner-content">
         <p class="banner-kicker">AI for Good</p>
         <h1 class="banner-title" aria-label="PyCon China 2026">
-            <span>PY</span><span>CON</span><span>CHINA</span><span>2026</span>
+            <span class="banner-title-row" aria-hidden="true">
+                <span class="lt lt-red">P</span><span class="lt lt-yellow">Y</span><span class="lt lt-blue">C</span><span class="lt lt-cream">O</span><span class="lt lt-purple">N</span><span class="lt-gap"> </span><span class="lt lt-purple">C</span><span class="lt lt-blue">H</span><span class="lt lt-yellow">I</span><span class="lt lt-red">N</span><span class="lt lt-cream">A</span>
+            </span>
+            <span class="banner-title-year" aria-hidden="true">2026</span>
         </h1>
     </div>
 </section>
