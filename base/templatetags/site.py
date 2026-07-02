@@ -85,3 +85,26 @@ def get_coc_page() -> Page | None:
     language_code = translation.get_language()
     page = Page.objects.filter(slug="coc", locale__language_code=language_code).first()
     return page
+
+
+# Slugs rendered as direct top-level nav links; everything else in the menu
+# is grouped under the "Activities" dropdown (hidden when empty).
+PRIMARY_MENU_SLUGS = frozenset({"talks", "schedule", "staff", "supporter"})
+
+
+@register.simple_tag
+def menu_primary(site_root: Page) -> list[Page]:
+    return [
+        page
+        for page in site_root.get_children().live().in_menu()
+        if page.slug in PRIMARY_MENU_SLUGS
+    ]
+
+
+@register.simple_tag
+def menu_activities(site_root: Page) -> list[Page]:
+    return [
+        page
+        for page in site_root.get_children().live().in_menu()
+        if page.slug not in PRIMARY_MENU_SLUGS
+    ]

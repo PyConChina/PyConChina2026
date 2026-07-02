@@ -26,26 +26,27 @@
                     </a>
                 </li>
                 {# Top-level: keep only special items as direct links #}
-                {% for child in site_root.get_children.live.in_menu %}
-                    {% if child.slug in "talks,schedule,staff,supporter" %}
-                        <li class="nav-item">
-                            <a href="{% i18n_url child %}" class="nav-link">
-                                {% if child.slug == "talks" %}
-                                    <i class="fa-solid fa-microphone nav-icon"></i>
-                                {% elif child.slug == "schedule" %}
-                                    <i class="fa-solid fa-calendar nav-icon"></i>
-                                {% elif child.slug == "staff" %}
-                                    <i class="fa-solid fa-users nav-icon"></i>
-                                {% elif child.slug == "supporter" %}
-                                    <i class="fa-solid fa-handshake nav-icon"></i>
-                                {% endif %}
-                                <span class="nav-text">{{ child.title }}</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                {% menu_primary site_root as primary_pages %}
+                {% menu_activities site_root as activity_pages %}
+                {% for child in primary_pages %}
+                    <li class="nav-item">
+                        <a href="{% i18n_url child %}" class="nav-link">
+                            {% if child.slug == "talks" %}
+                                <i class="fa-solid fa-microphone nav-icon"></i>
+                            {% elif child.slug == "schedule" %}
+                                <i class="fa-solid fa-calendar nav-icon"></i>
+                            {% elif child.slug == "staff" %}
+                                <i class="fa-solid fa-users nav-icon"></i>
+                            {% elif child.slug == "supporter" %}
+                                <i class="fa-solid fa-handshake nav-icon"></i>
+                            {% endif %}
+                            <span class="nav-text">{{ child.title }}</span>
+                        </a>
+                    </li>
                 {% endfor %}
 
-                {# Desktop dropdown: collect all other items under "Activities" #}
+                {# Desktop dropdown: all other menu items under "Activities"; hidden when empty #}
+                {% if activity_pages %}
                 <li class="nav-item language-switch">
                     <div class="language-dropdown">
                         <button class="language-btn dropdown-toggle" id="activitiesDropdown">
@@ -54,17 +55,16 @@
                             <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
                         </button>
                         <div class="language-dropdown-menu" id="activitiesDropdownMenu">
-                            {% for child in site_root.get_children.live.in_menu %}
-                                {% if child.slug not in "talks,schedule,staff,supporter" %}
-                                    <a href="{% i18n_url child %}" class="language-option">
-                                        <i class="fa-solid fa-file-alt option-check" style="opacity:1"></i>
-                                        <span>{{ child.title }}</span>
-                                    </a>
-                                {% endif %}
+                            {% for child in activity_pages %}
+                                <a href="{% i18n_url child %}" class="language-option">
+                                    <i class="fa-solid fa-file-alt option-check" style="opacity:1"></i>
+                                    <span>{{ child.title }}</span>
+                                </a>
                             {% endfor %}
                         </div>
                     </div>
                 </li>
+                {% endif %}
 
                 <!-- Language Switch -->
                 {% get_current_language as LANGUAGE_CODE %}
@@ -120,43 +120,40 @@
                     </a>
                 </li>
                 {# Mobile: render special items first #}
-                {% for child in site_root.get_children.live.in_menu %}
-                    {% if child.slug in "talks,schedule,staff,supporter" %}
-                        <li class="mobile-nav-item">
-                            <a href="{% i18n_url child %}" class="mobile-nav-link">
-                                {% if child.slug == "talks" %}
-                                    <i class="fa-solid fa-microphone nav-icon"></i>
-                                {% elif child.slug == "schedule" %}
-                                    <i class="fa-solid fa-calendar nav-icon"></i>
-                                {% elif child.slug == "staff" %}
-                                    <i class="fa-solid fa-users nav-icon"></i>
-                                {% elif child.slug == "supporter" %}
-                                    <i class="fa-solid fa-handshake nav-icon"></i>
-                                {% endif %}
-                                <span>{{ child.title }}</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                {% for child in primary_pages %}
+                    <li class="mobile-nav-item">
+                        <a href="{% i18n_url child %}" class="mobile-nav-link">
+                            {% if child.slug == "talks" %}
+                                <i class="fa-solid fa-microphone nav-icon"></i>
+                            {% elif child.slug == "schedule" %}
+                                <i class="fa-solid fa-calendar nav-icon"></i>
+                            {% elif child.slug == "staff" %}
+                                <i class="fa-solid fa-users nav-icon"></i>
+                            {% elif child.slug == "supporter" %}
+                                <i class="fa-solid fa-handshake nav-icon"></i>
+                            {% endif %}
+                            <span>{{ child.title }}</span>
+                        </a>
+                    </li>
                 {% endfor %}
 
-                {# Mobile: activities group header #}
+                {# Mobile: activities group (header + items); hidden when empty #}
+                {% if activity_pages %}
                 <li class="mobile-nav-item language-switch-mobile">
                     <div class="mobile-language-header">
                         <i class="fa-solid fa-puzzle-piece nav-icon"></i>
                         <span>{% translate "Activities" %}</span>
                     </div>
                 </li>
-                {# Mobile: activities items #}
-                {% for child in site_root.get_children.live.in_menu %}
-                    {% if child.slug not in "talks,schedule,staff,supporter" %}
-                        <li class="mobile-nav-item mobile-language-item">
-                            <a href="{% i18n_url child %}" class="mobile-nav-link">
-                                <i class="fa-solid fa-file-alt nav-icon"></i>
-                                <span>{{ child.title }}</span>
-                            </a>
-                        </li>
-                    {% endif %}
+                {% for child in activity_pages %}
+                    <li class="mobile-nav-item mobile-language-item">
+                        <a href="{% i18n_url child %}" class="mobile-nav-link">
+                            <i class="fa-solid fa-file-alt nav-icon"></i>
+                            <span>{{ child.title }}</span>
+                        </a>
+                    </li>
                 {% endfor %}
+                {% endif %}
 
                 <!-- Mobile Language Switch -->
                 <li class="mobile-nav-item language-switch-mobile">
