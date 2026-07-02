@@ -35,14 +35,14 @@
 
 ## 3. 对比度规则(实测 WCAG,强制)
 
-| 场景 | 规则 | 实测 |
-|---|---|---|
-| 亮砖(yellow/orange/redhot/red/blue/green)上的文字 | **ink** | 4.65–11.21 AA |
-| 暗砖(pink/purple/indigo)上的文字 | **white**(`--brick-on-dark`) | 5.76–8.12 AA |
-| `--accent` 蓝文字 | **只允许在 paper/paper-muted 上**(5.74/5.28);任何彩砖/底板上都 FAIL(1.19–3.70) | |
-| `--ink-soft` 次级文字 | 只在 paper/yellow/green 上过 AA;蓝/红砖上必须用全 ink | |
-| 直接压底板的链接 | ink + `text-decoration-color: var(--py-yellow)`(accent 压底板仅 1.99) | 6.03 AA |
-| footer(`--bg-deep`)上文字 | white | 4.88 AA |
+| 场景                                              | 规则                                                                           | 实测          |
+| ------------------------------------------------- | ------------------------------------------------------------------------------ | ------------- |
+| 亮砖(yellow/orange/redhot/red/blue/green)上的文字 | **ink**                                                                        | 4.65–11.21 AA |
+| 暗砖(pink/purple/indigo)上的文字                  | **white**(`--brick-on-dark`)                                                   | 5.76–8.12 AA  |
+| `--accent` 蓝文字                                 | **只允许在 paper/paper-muted 上**(5.74/5.28);任何彩砖/底板上都 FAIL(1.19–3.70) |               |
+| `--ink-soft` 次级文字                             | 只在 paper/yellow/green 上过 AA;蓝/红砖上必须用全 ink                          |               |
+| 直接压底板的链接                                  | ink + `text-decoration-color: var(--py-yellow)`(accent 压底板仅 1.99)          | 6.03 AA       |
+| footer(`--bg-deep`)上文字                         | white                                                                          | 4.88 AA       |
 
 实现模式:组件轮转砖色时,同步定义文字 token,不要写死颜色:
 ```css
@@ -54,10 +54,10 @@
 
 ## 4. 字体
 
-| 层 | 字体 | 用途 |
-|---|---|---|
+| 层           | 字体                                                          | 用途                                |
+| ------------ | ------------------------------------------------------------- | ----------------------------------- |
 | Display 像素 | Press Start 2P(Latin)+ Zpix(CJK),自托管 `pycon/static/fonts/` | 大标题/kicker/导航品牌,**仅短文本** |
-| Body | AlibabaPuHuiTi(400/700)+ system fallback | 正文/卡片/表格 |
+| Body         | AlibabaPuHuiTi(400/700)+ system fallback                      | 正文/卡片/表格                      |
 
 全部 `font-display: swap`。像素字禁加粗(见 §1)。
 
@@ -93,7 +93,6 @@
 - [ ] 四角装饰贴边、不挡内容、移动端隐藏;无横向溢出(三档 viewport)
 - [ ] 日程:表头行/主会场跨列/同刻对齐/最小行高;项目文字不重叠
 - [ ] `manage.py check` + `pdm run build` 通过(既有 Treebeard/W042 警告除外)
-- [ ] 改样式必升 `?v=` cache-bust
 
 ## 7. 已知坑(修过的,别再犯)
 
@@ -106,3 +105,5 @@
 6. `Staff` 模型无 email 字段;staff 卡邮箱按钮曾是 `href="#"` 死链(处置待 Frost 决策)。
 7. 全局 `a:hover { color: accent-bright }` 会泄漏进组件链接(曾致蓝色便签 hover 文字蓝压蓝不可见)。
    现已收窄为 `a:not([class]):hover`(只作用于 richtext 无类链接);**组件型 `<a>` 必须带 class 并自管颜色**。
+8. SVG 里 CSS `transform` 动画会**替换**元素的 `transform` 属性(曾致 17 块砖全塌到原点)。
+   动画元素要包两层:外层 `<g transform=translate(...)>` 管定位,内层 `<g class>` 管动画。

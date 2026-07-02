@@ -3,12 +3,14 @@
 {% load wagtailcore_tags %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}?v=20260702-6">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 {% block content %}
 <section class="banner">
     <div class="banner-content">
+        {# Inlined (not <img>) so prefers-reduced-motion provably stops the assembly loop. #}
+        <div class="banner-logo" aria-hidden="true">{% include "components/python_logo_lego.svg" %}</div>
         <p class="banner-kicker">AI for Good</p>
         <h1 class="banner-title" aria-label="PyCon China 2026">
             <span class="banner-title-row" aria-hidden="true">

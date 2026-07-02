@@ -41,7 +41,7 @@
 
         {# Global stylesheets #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-        <link rel="stylesheet" href="{% static 'css/pycon.css' %}?v=20260702-4">
+        <link rel="stylesheet" href="{% static 'css/pycon.css' %}">
 
         {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
@@ -55,10 +55,10 @@
         {% include "components/navbar.html" %}
 
         <div class="page-shell">
-            <img class="site-corner site-corner-tl" src="{% static 'images/decor/corner-tl.svg' %}?v=20260702-2" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-tr" src="{% static 'images/decor/corner-tr.svg' %}?v=20260702-2" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-bl" src="{% static 'images/decor/corner-bl.svg' %}?v=20260702-2" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-br" src="{% static 'images/decor/corner-br.svg' %}?v=20260702-2" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-tl" src="{% static 'images/decor/corner-tl.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-tr" src="{% static 'images/decor/corner-tr.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-bl" src="{% static 'images/decor/corner-bl.svg' %}" alt="" aria-hidden="true">
+            <img class="site-corner site-corner-br" src="{% static 'images/decor/corner-br.svg' %}" alt="" aria-hidden="true">
             {% block content %}{% endblock %}
         </div>
 

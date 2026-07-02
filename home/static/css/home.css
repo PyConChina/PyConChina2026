@@ -23,6 +23,16 @@
     text-align: center;
 }
 
+.banner-logo {
+    width: clamp(96px, 13vw, 168px);
+}
+
+.banner-logo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .banner-kicker {
     margin: 0;
     padding: 8px 12px;
@@ -34,10 +44,10 @@
     font-size: 0.7rem;
 }
 
-/* Banner-reference title: flat per-letter colors, soft dark drop — no black
-   outline (the outlined look diverged from the banner art). Letter sequence
-   sampled from the banner: P=red Y=yellow C=blue O=cream N=purple / C=purple
-   H=blue I=yellow N=red A=cream; "2026" is beveled gray. */
+/* Banner-reference title: per-letter colors sampled from the banner (P=red
+   Y=yellow C=blue O=cream N=purple / C=purple H=blue I=yellow N=red A=cream),
+   "2026" beveled gray. Black 8-direction pixel outline per Frost's final call
+   (an outline-free variant was tried and rejected). */
 .banner-title {
     display: grid;
     justify-items: center;
