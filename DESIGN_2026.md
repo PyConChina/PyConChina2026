@@ -67,8 +67,8 @@
   `box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--brick-color) 68%, #000)`
   + studs 凸点(`::before` repeating radial-gradient,`aria-hidden` 性质的纯装饰)。
   hover = 拎起(`translateY(-3px)` + 底边加深);active = 按下(底边收缩 + `translateY(2px)`)。
-- **导航** = 白条上的**便利贴 tab**:五色 pastel 轮转、±2° 交替倾斜、hover 扶正抬起、
-  中性阴影 `rgba(26,26,26,.22)`;导航条本体 = 波点底板(无白卡、无投影)。
+- **导航** = 波点底板上的**便利贴 tab**:五色 pastel 轮转、±2° 交替倾斜、hover 扶正抬起、
+  中性阴影 `rgba(26,26,26,.22)`;导航条本体 = 波点底板(无白卡、无投影——白色导航条是被否决的旧方案)。
 - **小按钮/chip**(talk meta、staff 邮箱等):透明底 + `2px` ink 描边 + ink 内容;
   实心 CTA 用品牌色小砖(如 生成海报 = 黄砖)。焦点环用 **ink**(白环在白卡上不可见)。
 - **四角装饰**:`base.html` 的 `.page-shell{position:relative}` 内四个 SVG 精灵

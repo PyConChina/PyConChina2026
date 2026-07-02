@@ -1,7 +1,7 @@
 [project]
 name = "PyConChina"
-version = "2025.0"
-description = "PyCon China 2025 大会官网"
+version = "2026.0"
+description = "PyCon China 2026 大会官网"
 authors = [
     {name = "Frost Ming", email = "me@frostming.com"},
 ]
@@ -13,6 +13,7 @@ dependencies = [
     "ics @ git+https://github.com/ics-py/ics-py.git@main",
     "dj-database-url>=3.0.0",
     "pillow>=11.2.1",
+    "setuptools<82",
 ]
 requires-python = ">=3.12"
 readme = "README.md"
