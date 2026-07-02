@@ -1,5 +1,5 @@
 # Use an official Python runtime based on Debian 10 "buster" as a parent image.
-ARG PYTHON_IMAGE=3.12-slim
+ARG PYTHON_IMAGE=3.14-slim
 FROM python:${PYTHON_IMAGE} AS builder
 
 # Install system packages required by Wagtail and Django.
