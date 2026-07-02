@@ -1,6 +1,7 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags wagtailuserbar i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8" />
         <title>
@@ -11,30 +12,27 @@
             - PyCon China 2026
             {% endblock %}
         </title>
-        {% if page.search_description %}
-        <meta name="description" content="{{ page.search_description }}" />
-        {% endif %}
+        <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{% translate "PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python community." %}{% endif %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="{% static 'images/logo.png' %}" />
+        <link rel="canonical" href="{{ request.build_absolute_uri }}" />
         <link rel="preload" href="{% static 'fonts/PressStart2P-Regular.ttf' %}" as="font" type="font/ttf" crossorigin />
-        <!-- Open Graph meta tags -->
+        <!-- Open Graph -->
+        <meta property="og:site_name" content="PyCon China 2026" />
         <meta property="og:title" content="{% block og_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-        <meta property="og:image" content="{% block og_image %}{% static 'images/banner_2026.png' %}{% endblock %}" />
+        {# Social crawlers require absolute image URLs — a bare {% static %} path renders no card image. #}
+        <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/banner_2026.png' %}{% endblock %}" />
+        <meta property="og:image:alt" content="{% block og_image_alt %}PyCon China 2026 — AI for Good{% endblock %}" />
+        <meta property="og:locale" content="{% if LANGUAGE_CODE == 'en' %}en_US{% else %}zh_CN{% endif %}" />
+        <meta property="og:description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{% translate "PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python community." %}{% endif %}" />
 
-        {% if page.search_description %}
-        <meta property="og:description" content="{{ page.search_description }}" />
-        {% endif %}
-
-        <!-- Twitter Card meta tags -->
+        <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="{% block twitter_title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}{% endblock %}" />
-        <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/banner_2026.png' %}{% endblock %}" />
-
-        {% if page.search_description %}
-        <meta name="twitter:description" content="{{ page.search_description }}" />
-        {% endif %}
+        <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/banner_2026.png' %}{% endblock %}" />
+        <meta name="twitter:description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{% translate "PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python community." %}{% endif %}" />
 
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 10:22+0800\n"
+"POT-Creation-Date: 2026-07-02 17:47+0800\n"
 "PO-Revision-Date: 2025-01-16 10:00+0800\n"
 "Last-Translator: PyConChina Team <contact@pycon.org.cn>\n"
 "Language-Team: English <en@li.org>\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: pycon/templates/404.html:4 pycon/templates/404.html:17
+#: home/templates/home/home_page.html:22
+msgid "Conference highlights"
+msgstr "Conference highlights"
+
+#: home/templates/home/home_page.html:26
+msgid "EXPLORE"
+msgstr ""
+
+#: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "Page not found"
 
-#: pycon/templates/404.html:26
+#: pycon/templates/404.html:25
 msgid "Sorry, the page you are looking for does not exist or has been moved."
 msgstr "Sorry, the page you are looking for does not exist or has been moved."
 
@@ -30,43 +38,50 @@ msgstr "Sorry, the page you are looking for does not exist or has been moved."
 msgid "Return to homepage"
 msgstr "Return to homepage"
 
-#: pycon/templates/500.html:4 pycon/templates/500.html:17
+#: pycon/templates/500.html:4 pycon/templates/500.html:18
 msgid "Internal server error"
 msgstr "Internal Server Error"
 
-#: pycon/templates/500.html:26
+#: pycon/templates/500.html:25
 msgid "Sorry, the server encountered an issue. Please try again later."
 msgstr "Sorry, the server encountered an issue. Please try again later."
+
+#: pycon/templates/base.html:15 pycon/templates/base.html:29
+#: pycon/templates/base.html:35
+msgid ""
+"PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python "
+"community."
+msgstr ""
 
 #: pycon/templates/components/footer.html:33
 msgid "Previous Conferences"
 msgstr "Previous Conferences"
 
-#: pycon/templates/components/footer.html:55
+#: pycon/templates/components/footer.html:56
 msgid "Quick links"
 msgstr "Quick links"
 
-#: pycon/templates/components/footer.html:65
+#: pycon/templates/components/footer.html:66
 msgid "Call for Papers"
 msgstr "Call for Papers"
 
-#: pycon/templates/components/footer.html:69
+#: pycon/templates/components/footer.html:70
 msgid "Volunteer Recruitment"
 msgstr "Volunteer Recruitment"
 
-#: pycon/templates/components/footer.html:76
+#: pycon/templates/components/footer.html:81
 msgid "Contact Information"
 msgstr "Contact Information"
 
-#: pycon/templates/components/footer.html:81
+#: pycon/templates/components/footer.html:86
 msgid "Email"
 msgstr "Email"
 
-#: pycon/templates/components/footer.html:98
+#: pycon/templates/components/footer.html:103
 msgid "All rights reserved."
 msgstr "All rights reserved."
 
-#: pycon/templates/components/footer.html:101
+#: pycon/templates/components/footer.html:106
 msgid "Powered by Python & Wagtail"
 msgstr "Powered by Python & Wagtail"
 
@@ -75,28 +90,28 @@ msgstr "Powered by Python & Wagtail"
 msgid "Home"
 msgstr "Home"
 
-#: pycon/templates/components/navbar.html:53
-#: pycon/templates/components/navbar.html:146
+#: pycon/templates/components/navbar.html:54
+#: pycon/templates/components/navbar.html:145
 msgid "Activities"
 msgstr "Activities"
 
-#: pycon/templates/components/navbar.html:165
+#: pycon/templates/components/navbar.html:162
 msgid "Language"
 msgstr "Language"
 
-#: schedule/models.py:50
+#: schedule/models.py:49
 msgid "Main Venue"
 msgstr "Main Venue"
 
-#: schedule/models.py:60 talk/templates/talk/talk_list_page.html:94
+#: schedule/models.py:57 talk/templates/talk/talk_list_page.html:33
 msgid "Speaker"
 msgstr "Speaker"
 
-#: schedule/templates/schedule/schedule_list_page.html:29
+#: schedule/templates/schedule/schedule_list_page.html:26
 msgid "Download calendar (.ics)"
 msgstr "Download calendar (.ics)"
 
-#: schedule/templates/snippets/schedule.html:12
+#: schedule/templates/snippets/schedule.html:13
 msgid "Host"
 msgstr "Host"
 
@@ -125,7 +140,7 @@ msgstr "No results found"
 msgid "Try searching with different keywords"
 msgstr "Try searching with different keywords"
 
-#: staff/templates/staff/staff_page.html:34
+#: staff/templates/staff/staff_page.html:37
 msgid "Contact"
 msgstr "Contact"
 

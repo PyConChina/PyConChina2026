@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-10 10:22+0800\n"
+"POT-Creation-Date: 2026-07-02 17:47+0800\n"
 "PO-Revision-Date: 2025-01-16 10:00+0800\n"
 "Last-Translator: PyConChina Team <contact@pycon.org.cn>\n"
 "Language-Team: Chinese Simplified <zh-hans@li.org>\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: pycon/templates/404.html:4 pycon/templates/404.html:17
+#: home/templates/home/home_page.html:22
+msgid "Conference highlights"
+msgstr "会议亮点"
+
+#: home/templates/home/home_page.html:26
+msgid "EXPLORE"
+msgstr "探索"
+
+#: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "页面未找到"
 
-#: pycon/templates/404.html:26
+#: pycon/templates/404.html:25
 msgid "Sorry, the page you are looking for does not exist or has been moved."
 msgstr "抱歉，您要查找的页面不存在或已被移动。"
 
@@ -30,43 +38,50 @@ msgstr "抱歉，您要查找的页面不存在或已被移动。"
 msgid "Return to homepage"
 msgstr "返回首页"
 
-#: pycon/templates/500.html:4 pycon/templates/500.html:17
+#: pycon/templates/500.html:4 pycon/templates/500.html:18
 msgid "Internal server error"
 msgstr "内部服务器错误"
 
-#: pycon/templates/500.html:26
+#: pycon/templates/500.html:25
 msgid "Sorry, the server encountered an issue. Please try again later."
 msgstr "抱歉，服务器遇到问题。请稍后再试。"
+
+#: pycon/templates/base.html:15 pycon/templates/base.html:29
+#: pycon/templates/base.html:35
+msgid ""
+"PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python "
+"community."
+msgstr "PyCon China 2026 · AI for Good —— 中国 Python 开发者年度盛会。"
 
 #: pycon/templates/components/footer.html:33
 msgid "Previous Conferences"
 msgstr "往届大会"
 
-#: pycon/templates/components/footer.html:55
+#: pycon/templates/components/footer.html:56
 msgid "Quick links"
 msgstr "快速链接"
 
-#: pycon/templates/components/footer.html:65
+#: pycon/templates/components/footer.html:66
 msgid "Call for Papers"
 msgstr "主题征集"
 
-#: pycon/templates/components/footer.html:69
+#: pycon/templates/components/footer.html:70
 msgid "Volunteer Recruitment"
 msgstr "志愿者招募"
 
-#: pycon/templates/components/footer.html:76
+#: pycon/templates/components/footer.html:81
 msgid "Contact Information"
 msgstr "联系方式"
 
-#: pycon/templates/components/footer.html:81
+#: pycon/templates/components/footer.html:86
 msgid "Email"
 msgstr "邮箱"
 
-#: pycon/templates/components/footer.html:98
+#: pycon/templates/components/footer.html:103
 msgid "All rights reserved."
 msgstr "保留所有权利。"
 
-#: pycon/templates/components/footer.html:101
+#: pycon/templates/components/footer.html:106
 msgid "Powered by Python & Wagtail"
 msgstr "由 Python 和 Wagtail 驱动"
 
@@ -75,28 +90,28 @@ msgstr "由 Python 和 Wagtail 驱动"
 msgid "Home"
 msgstr "首页"
 
-#: pycon/templates/components/navbar.html:53
-#: pycon/templates/components/navbar.html:146
+#: pycon/templates/components/navbar.html:54
+#: pycon/templates/components/navbar.html:145
 msgid "Activities"
 msgstr "活动"
 
-#: pycon/templates/components/navbar.html:165
+#: pycon/templates/components/navbar.html:162
 msgid "Language"
 msgstr "语言"
 
-#: schedule/models.py:50
+#: schedule/models.py:49
 msgid "Main Venue"
 msgstr "主会场"
 
-#: schedule/models.py:60 talk/templates/talk/talk_list_page.html:94
+#: schedule/models.py:57 talk/templates/talk/talk_list_page.html:33
 msgid "Speaker"
 msgstr "演讲者"
 
-#: schedule/templates/schedule/schedule_list_page.html:29
+#: schedule/templates/schedule/schedule_list_page.html:26
 msgid "Download calendar (.ics)"
 msgstr "下载日历 (.ics)"
 
-#: schedule/templates/snippets/schedule.html:12
+#: schedule/templates/snippets/schedule.html:13
 msgid "Host"
 msgstr "主持人"
 
@@ -125,7 +140,7 @@ msgstr "未找到结果"
 msgid "Try searching with different keywords"
 msgstr "请尝试使用不同的关键词搜索"
 
-#: staff/templates/staff/staff_page.html:34
+#: staff/templates/staff/staff_page.html:37
 msgid "Contact"
 msgstr "联系"
 
