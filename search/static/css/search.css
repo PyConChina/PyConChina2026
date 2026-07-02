@@ -1,6 +1,5 @@
 .page-container { width:min(calc(100% - 32px), 900px); }
-.search-form,
-.search-result-item { position:relative; padding:30px 24px 24px; border-radius:10px; background:var(--paper); box-shadow:0 var(--brick-depth) 0 color-mix(in srgb,var(--paper) 68%,#000); }
+/* Panel look comes from the shared .content-panel rule in pycon.css (added in template). */
 .search-form { margin-bottom:32px; }
 .search-input-group { display:flex; gap:14px; }
 .search-input { min-height:48px; flex:1; border:2px solid var(--accent); border-radius:7px; padding:10px 14px; background:var(--paper-muted); color:var(--ink); font-size:1rem; }

@@ -1,6 +1,6 @@
 {% load site i18n %}
 
-<div class="schedule-list">
+<div class="content-panel schedule-list">
     <div class="schedule-list-date">{{ date|date:"Y-m-d" }}</div>
     {% get_schedule_boundaries rooms as boundaries %}
     {% with columns=rooms.keys %}

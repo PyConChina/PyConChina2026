@@ -2,7 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags static i18n %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+<link rel="stylesheet" href="{% static 'css/talk.css' %}?v=20260702-2">
 {% endblock %}
 
 {% block og_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
@@ -37,7 +37,7 @@
     <div class="talk-content">
         <ul class="authors">
             {% for author in page.authors.all %}
-                <li class="author">
+                <li class="content-panel author">
                     <div>
                         <div class="author-info">
                             <span class="author-name">{{ author.name }}</span>

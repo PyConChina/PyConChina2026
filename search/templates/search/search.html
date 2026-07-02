@@ -6,7 +6,7 @@
 {% block title %}{% translate "Search" %}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/search.css' %}?v=20260702-1">
+<link rel="stylesheet" href="{% static 'css/search.css' %}?v=20260702-2">
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
         <h1 class="page-title">{% translate "Search" %}</h1>
     </div>
 
-    <div class="search-form">
+    <div class="content-panel search-form">
         <form action="{% url 'search' %}" method="get">
             <div class="search-input-group">
                 <input type="text" name="query" class="search-input"
@@ -31,7 +31,7 @@
     {% if search_results %}
     <div class="search-results">
         {% for result in search_results %}
-        <div class="search-result-item">
+        <div class="content-panel search-result-item">
             <a href="{% pageurl result %}" class="search-result-title">{{ result }}</a>
             {% if result.search_description %}
                 <div class="search-result-snippet">{{ result.search_description }}</div>

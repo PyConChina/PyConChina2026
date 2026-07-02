@@ -1,12 +1,5 @@
 .schedule-page-container { width: min(calc(100% - 32px), 1400px); margin: 0 auto; padding: 26px 0; }
-.schedule-page-container .talk-content,
-.schedule-list {
-    position: relative;
-    padding: 30px 24px 24px;
-    border-radius: 10px;
-    background: var(--paper);
-    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--paper) 68%, #000);
-}
+/* Panel look comes from the shared .content-panel/.talk-content rule in pycon.css. */
 .schedule-page-container .talk-content { margin-bottom: 28px; }
 .schedule-content { overflow-x: auto; padding: 12px 0; }
 .schedule-download { margin-bottom: 20px; }

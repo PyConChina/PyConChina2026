@@ -2,7 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags static i18n site %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/talk.css' %}">
+<link rel="stylesheet" href="{% static 'css/talk.css' %}?v=20260702-2">
 {% endblock %}
 
 {% block content %}
@@ -20,7 +20,7 @@
     {% endif %}
 
     {% for child in page.get_talks %}
-        <div class="talk-list-item">
+        <div class="content-panel talk-list-item">
             <h3 class="card-header talk-list-title">
                 <a href="{% i18n_url child %}">{{ child.title }}</a>
                 {% include "snippets/badge.html" with page=child.specific %}

@@ -9,9 +9,7 @@
 .talk-poster-button:hover { background:var(--py-orange); color:var(--ink); transform:translateY(-2px); }
 .talk-poster-button:active { box-shadow:0 1px 0 color-mix(in srgb,var(--py-yellow) 68%,#000); transform:translateY(2px); }
 .talk-poster-button:focus-visible { outline:3px solid var(--paper); outline-offset:3px; }
-.talk-content,
-.author,
-.talk-list-item { position:relative; padding:30px 24px 24px; border-radius:10px; background:var(--paper); box-shadow:0 var(--brick-depth) 0 color-mix(in srgb,var(--paper) 68%,#000); }
+/* Panel look comes from the shared .content-panel/.talk-content rule in pycon.css. */
 .talk-content { margin-bottom:30px; }
 .talk-list-item { margin-bottom:28px; }
 .talk-list-title { color:var(--accent); font-size:1.45rem; }

@@ -261,6 +261,29 @@ main {
     overflow-x: auto;
 }
 
+/* Shared paper content panel — single DRY definition. `.talk-content` is the
+   established alias already used by talk/schedule/article/error templates;
+   new consumers should use `.content-panel`. Spacing/layout deltas stay in app CSS. */
+.content-panel,
+.talk-content {
+    position: relative;
+    padding: 30px 24px 24px;
+    border-radius: 10px;
+    background: var(--paper);
+    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--paper) 68%, #000);
+}
+
+@media (max-width: 700px) {
+    .content-panel,
+    .talk-content {
+        padding: 24px 18px 20px;
+    }
+}
+
+.page-intro {
+    margin-bottom: 32px;
+}
+
 .title,
 .page-title,
 .pixel-title {
@@ -293,18 +316,9 @@ main {
     text-align: center;
 }
 
-/* Links inside intro copy sit directly on the green baseplate, where the blue
-   accent fails contrast (1.99); ink passes (6.03) with a yellow brand underline. */
-.page-header .content a {
-    color: var(--ink);
-    font-weight: 700;
-    text-decoration-color: var(--py-yellow);
-}
-
-.page-header .content a:hover {
-    color: var(--ink);
-    text-decoration-color: var(--paper);
-}
+/* Intro copy now always sits on a .content-panel (never bare on the baseplate),
+   so links keep the standard accent-on-paper treatment (AA 5.74). If content must
+   ever sit directly on the baseplate, use ink text — accent fails there (1.99). */
 
 .page-title {
     display: inline-block;
