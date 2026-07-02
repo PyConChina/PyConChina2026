@@ -10,7 +10,7 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - SITE_DOMAIN=${SITE_DOMAIN}
     volumes:
-      - /data/pycon/2025:/app/data
+      - /data/pycon/2026:/app/data
       - /data/pycon/db.sqlite3:/app/db.sqlite3
     expose:
       - "8000"
