@@ -20,6 +20,8 @@
 a.schedule-item { text-decoration: none; }
 a.schedule-item:hover { background: var(--py-yellow); transform: translateY(-2px); }
 .schedule-item-span { color: var(--accent); font-size: .8em; font-weight: 700; }
+/* On blue talk bricks the blue accent fails contrast (1.82); ink passes (5.52). */
+.schedule-item.talk .schedule-item-span { color: var(--ink); }
 .schedule-item-badge { font-size: .68em; }
 .schedule-item-title { overflow-wrap: anywhere; text-align: center; }
 @media (max-width: 700px) { .schedule-page-container { width: min(calc(100% - 24px), 1400px); } .schedule-list { min-width: 780px; } }

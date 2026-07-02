@@ -81,7 +81,6 @@
     text-decoration: none;
 }
 
-.cta-buttons > a:nth-child(2n) { background: var(--py-blue); }
 .cta-buttons > a:nth-child(2n) { --brick-color: var(--py-blue); }
 .cta-buttons > a:nth-child(3n) { --brick-color: var(--py-red); }
 
@@ -170,6 +169,7 @@
     padding: 14px;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.88);
+    color: var(--ink);
 }
 
 @media (max-width: 900px) {

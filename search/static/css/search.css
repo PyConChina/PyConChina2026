@@ -6,6 +6,8 @@
 .search-input { min-height:48px; flex:1; border:2px solid var(--accent); border-radius:7px; padding:10px 14px; background:var(--paper-muted); color:var(--ink); font-size:1rem; }
 .search-input:focus { border-color:var(--accent-bright); outline:3px solid color-mix(in srgb,var(--accent-bright) 40%,transparent); outline-offset:2px; }
 .search-button { min-height:48px; border:0; border-radius:7px; padding:10px 18px; background:var(--py-yellow); box-shadow:0 5px 0 color-mix(in srgb,var(--py-yellow) 68%,#000); color:var(--ink); cursor:pointer; font-weight:700; }
+/* Outranks the global button rule (0-2-1) so the button matches the 48px input height. */
+.search-form button.search-button { min-height:48px; }
 .search-results { display:grid; gap:28px; margin-top:30px; }
 .search-result-item { margin:0; }
 .search-result-item:nth-child(3n + 2) { background:var(--paper-muted); }
@@ -13,6 +15,6 @@
 .search-result-title:hover { color:var(--accent-bright); }
 .search-result-snippet { color:var(--ink-soft); line-height:1.65; }
 .search-result-meta { color:var(--accent); font-size:.9rem; font-weight:700; }
-.search-no-results { padding:52px 20px; color:var(--accent); text-align:center; }
+.search-no-results { padding:52px 20px; color:var(--ink); font-weight:700; text-align:center; }
 .search-pagination { display:flex; justify-content:center; gap:12px; margin-top:30px; }
 @media (max-width:700px) { .search-input-group { flex-direction:column; } .search-button { width:100%; } }

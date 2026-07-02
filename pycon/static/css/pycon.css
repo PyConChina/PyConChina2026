@@ -29,7 +29,7 @@
 :root {
     --bg-base: #3daa84;
     --bg-dot: #4fb089;
-    --bg-deep: #2e8c6b;
+    --bg-deep: #2a7f61; /* darkened from #2e8c6b so white footer text passes WCAG AA (4.88) */
     --paper: #ffffff;
     --paper-muted: #edf8f3;
     --ink: #1a1a1a;
@@ -251,8 +251,8 @@ main {
 .card-header {
     margin: 0 0 10px;
     padding: calc(var(--stud-size) + 10px) 0 10px;
-    border-bottom: 2px solid var(--ink);
-    color: var(--ink);
+    border-bottom: 2px solid var(--brick-on);
+    color: var(--brick-on);
     font-size: 1.3rem;
     font-weight: 700;
 }
@@ -291,6 +291,19 @@ main {
 .page-header {
     margin-bottom: 40px;
     text-align: center;
+}
+
+/* Links inside intro copy sit directly on the green baseplate, where the blue
+   accent fails contrast (1.99); ink passes (6.03) with a yellow brand underline. */
+.page-header .content a {
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration-color: var(--py-yellow);
+}
+
+.page-header .content a:hover {
+    color: var(--ink);
+    text-decoration-color: var(--paper);
 }
 
 .page-title {
@@ -451,7 +464,7 @@ button:not(.language-btn):not(.mobile-close):active {
     border: 0;
     border-radius: 2px;
     background: #fff5a8;
-    box-shadow: 0 3px 0 rgba(135, 110, 27, 0.28);
+    box-shadow: 0 3px 0 rgba(26, 26, 26, 0.22);
     color: var(--ink);
     cursor: pointer;
     font-size: 0.9rem;
@@ -647,7 +660,7 @@ button:not(.language-btn):not(.mobile-close):active {
     border: 0;
     border-radius: 2px;
     background: #fff5a8;
-    box-shadow: 0 3px 0 rgba(135, 110, 27, 0.28);
+    box-shadow: 0 3px 0 rgba(26, 26, 26, 0.22);
     color: var(--ink);
     font-size: 1rem;
     font-weight: 700;

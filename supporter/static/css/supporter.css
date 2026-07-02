@@ -23,6 +23,7 @@
 
 .supporter-member {
     --brick-color: var(--paper);
+    --on-soft: var(--ink-soft);
     position: relative;
     min-height: 240px;
     padding: 30px 24px 24px;
@@ -34,10 +35,11 @@
     transition: transform var(--ease-ui), box-shadow var(--ease-ui);
 }
 
-.supporter-member:nth-child(5n + 2) { --brick-color: var(--py-yellow); }
-.supporter-member:nth-child(5n + 3) { --brick-color: var(--py-blue); }
-.supporter-member:nth-child(5n + 4) { --brick-color: var(--py-red); }
-.supporter-member:nth-child(5n + 5) { --brick-color: var(--py-green); }
+/* Soft ink text only passes AA on the paper brick; colored bricks use full ink. */
+.supporter-member:nth-child(5n + 2) { --brick-color: var(--py-yellow); --on-soft: var(--ink); }
+.supporter-member:nth-child(5n + 3) { --brick-color: var(--py-blue); --on-soft: var(--ink); }
+.supporter-member:nth-child(5n + 4) { --brick-color: var(--py-red); --on-soft: var(--ink); }
+.supporter-member:nth-child(5n + 5) { --brick-color: var(--py-green); --on-soft: var(--ink); }
 
 .supporter-member::before,
 .supporter-member::after {
@@ -95,7 +97,7 @@
 
 .supporter-description {
     margin: 0;
-    color: var(--ink-soft);
+    color: var(--on-soft);
     line-height: 1.6;
 }
 
