@@ -141,6 +141,12 @@
     background-image: radial-gradient(circle at 9px 4px, rgba(255, 255, 255, 0.35) 0 5px, transparent 5px);
 }
 
+/* Hover feedback via deeper plastic edge only — transform would fight the
+   stagger offsets on .highlight-purple/.highlight-red. Text keeps --brick-on. */
+.home-highlight:hover {
+    box-shadow: 0 calc(var(--brick-depth) + 3px) 0 color-mix(in srgb, var(--brick-color) 62%, #000);
+}
+
 .home-highlight h2 { color: inherit; font-size: 1.35rem; }
 .home-highlight p { margin: 0; }
 .highlight-label { margin-bottom: 10px !important; font-family: var(--font-pixel); font-size: 0.62rem; }

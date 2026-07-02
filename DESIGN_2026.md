@@ -99,3 +99,5 @@
 4. `elementFromPoint` 打在 SVG 透明区会命中底层元素,判"可见"要看渲染/实心处。
 5. 原型/演示数据不可直接上线(曾把占位英文硬编码进首页);内容一律走 CMS + i18n。
 6. `Staff` 模型无 email 字段;staff 卡邮箱按钮曾是 `href="#"` 死链(处置待 Frost 决策)。
+7. 全局 `a:hover { color: accent-bright }` 会泄漏进组件链接(曾致蓝色便签 hover 文字蓝压蓝不可见)。
+   现已收窄为 `a:not([class]):hover`(只作用于 richtext 无类链接);**组件型 `<a>` 必须带 class 并自管颜色**。

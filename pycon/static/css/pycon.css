@@ -102,8 +102,14 @@ a {
     transition: color var(--ease-ui), background-color var(--ease-ui), transform var(--ease-ui), box-shadow var(--ease-ui);
 }
 
-a:hover {
-    color: var(--accent-bright);
+/* Hover only for classless (richtext/content) links — component links manage
+   their own colors (a bare a:hover once leaked accent-bright onto them, making
+   text invisible on the blue brick). Text color stays --accent on hover too:
+   accent-bright on white is only 3.15, below AA 4.5 for body text. Hover is
+   signalled by the underline, which has no text-contrast requirement. */
+a:not([class]):hover {
+    text-decoration-color: var(--accent-bright);
+    text-decoration-thickness: 3px;
 }
 
 a:focus-visible,
@@ -168,10 +174,6 @@ main {
 
 .content a {
     color: var(--accent);
-}
-
-.content a:hover {
-    color: var(--accent-bright);
 }
 
 .richtext-image.right {
