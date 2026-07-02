@@ -1,3 +1,5 @@
 # PyCon China
 
-PyCon China 2025 大会官网
+PyCon China 2026 大会官网
+
+由 Django & Wagtail 驱动
