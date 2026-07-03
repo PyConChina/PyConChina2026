@@ -5,12 +5,6 @@
 }
 
 @font-face {
-    font-family: "Zpix";
-    src: url("../fonts/Zpix-Regular.woff2") format("woff2");
-    font-display: swap;
-}
-
-@font-face {
     font-family: "AlibabaPuHuiTi";
     src: url("../fonts/AlibabaPuHuiTi-Regular.otf") format("opentype");
     font-style: normal;
@@ -48,7 +42,7 @@
     --accent-bright: var(--py-blue);
     --brick-on-light: var(--ink);
     --brick-on-dark: #ffffff;
-    --font-pixel: "Press Start 2P", "Zpix", monospace;
+    --font-pixel: "Press Start 2P", "AlibabaPuHuiTi", system-ui, sans-serif;
     --font-body: "AlibabaPuHuiTi", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --border-ink: 2px solid var(--ink);
     --border-pixel: var(--border-ink);

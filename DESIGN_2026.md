@@ -14,7 +14,7 @@
 禁令(违者即回退):
 - 禁 `backdrop-filter` / 毛玻璃、紫色渐变(v1 遗产,也是 AI-slop 默认款)
 - 禁面板/砖块用对角硬位移投影(`box-shadow: Npx Npx 0 ink`)——那是 neobrutalism
-- 禁像素字体加粗:Press Start 2P / Zpix 均单一字重,任何 700 触发浏览器合成加粗即糊。
+- 禁像素字体加粗:Press Start 2P 单一字重,任何 700 触发浏览器合成加粗即糊。
   所有像素字 `font-weight: 400` + `font-synthesis: none`;CJK 像素标题描边最多 1px
 - 显示大标题**允许**位移 `text-shadow`(街机文字深度,与面板投影是两回事)
 
@@ -56,7 +56,7 @@
 
 | 层           | 字体                                                          | 用途                                |
 | ------------ | ------------------------------------------------------------- | ----------------------------------- |
-| Display 像素 | Press Start 2P(Latin)+ Zpix(CJK),自托管 `pycon/static/fonts/` | 大标题/kicker/导航品牌,**仅短文本** |
+| Display 像素 | Press Start 2P(Latin,自托管);CJK 回落 AlibabaPuHuiTi(Zpix 已删,2026-07-03 Frost) | 大标题/kicker/导航品牌,**仅短文本** |
 | Body         | AlibabaPuHuiTi(400/700)+ system fallback                      | 正文/卡片/表格                      |
 
 全部 `font-display: swap`。像素字禁加粗(见 §1)。
