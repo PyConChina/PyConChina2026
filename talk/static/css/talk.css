@@ -1,6 +1,6 @@
 .talk-header { --brick-color: var(--py-blue); position:relative; margin-bottom:32px; padding:34px 28px 28px; border-radius:12px; background:var(--brick-color); background-image:linear-gradient(180deg,rgba(255,255,255,.18),transparent 40%); box-shadow:0 var(--brick-depth) 0 color-mix(in srgb,var(--brick-color) 68%,#000); color:var(--ink); text-align:center; }
 .talk-header::before { position:absolute; top:-9px; left:24px; right:24px; height:18px; background:radial-gradient(circle at 9px center,color-mix(in srgb,var(--brick-color) 82%,#000) 0 7px,transparent 7px); background-size:30px 18px; background-repeat:repeat-x; content:""; }
-.talk-title { margin:0 0 18px; color:inherit; font-size:clamp(1.6rem,4vw,2.5rem); font-weight:400; }
+.talk-title { margin:0 0 18px; color:inherit; font-size:clamp(1.6em,4vw,2.5em); font-weight:400; }
 .talk-header .talk-badge { display:inline-block; margin:0 0 14px; }
 .talk-meta { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; }
 .talk-meta-item { display:inline-flex; min-height:44px; align-items:center; padding:8px 12px; border:2px solid var(--ink); border-radius:7px; background:transparent; color:var(--ink); font-weight:700; }
@@ -12,9 +12,9 @@
 /* Panel look comes from the shared .content-panel/.talk-content rule in pycon.css. */
 .talk-content { margin-bottom:30px; }
 .talk-list-item { margin-bottom:28px; }
-.talk-list-title { color:var(--accent); font-size:1.45rem; }
+.talk-list-title { color:var(--accent); font-size:1.45em; }
 .talk-list-title a { color:inherit; text-decoration:none; }
-/* Large bold text (1.45rem/700): accent-bright at 3.15 meets AA-large (3.0). */
+/* Large bold text (1.45em/700): accent-bright at 3.15 meets AA-large (3.0). */
 .talk-list-title a:hover { color:var(--accent-bright); }
 .talk-item { display:flex; align-items:flex-start; gap:20px; }
 .talk-item > div:first-child { flex:1; }
@@ -26,12 +26,12 @@
 .author { display:flex; align-items:flex-start; gap:20px; margin-bottom:24px; }
 .author > div:first-child { flex:1; }
 .author-info { display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; }
-.author-name { color:var(--accent); font-size:1.4rem; font-weight:700; }
+.author-name { color:var(--accent); font-size:1.4em; font-weight:700; }
 .author-company { color:var(--ink-soft); font-weight:700; }
 .author-bio,.talk-abstract { color:var(--ink-soft); line-height:1.7; }
 .author-avatar { width:88px; height:88px; border:5px solid var(--py-yellow); border-radius:50%; object-fit:cover; }
 .talk-outline h3,.talk-content h3 { color:var(--accent); }
-.talk-section-title { margin:0 0 20px; color:var(--accent); font-size:1.35rem; }
+.talk-section-title { margin:0 0 20px; color:var(--accent); font-size:1.35em; }
 .talk-outline li { border-bottom:1px solid #c5ded4; padding:8px 0; }
 .talk-outline li::before { color:var(--py-blue); content:"■"; margin-right:8px; }
 @media (max-width:700px) { .talk-header { padding:30px 18px 24px; } .talk-meta { flex-direction:column; } .author { flex-direction:column; text-align:center; } .author-avatar { margin:auto; } .author-info { justify-content:center; } }

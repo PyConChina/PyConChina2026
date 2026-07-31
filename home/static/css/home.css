@@ -41,7 +41,7 @@
     background: var(--py-yellow);
     box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--py-yellow) 68%, #000);
     font-family: var(--font-pixel);
-    font-size: 0.7rem;
+    font-size: 0.7em;
 }
 
 /* Banner-reference title: per-letter colors sampled from the banner (P=red
@@ -56,7 +56,7 @@
     font-family: var(--font-pixel);
     font-weight: 400;
     font-synthesis: none;
-    font-size: clamp(1.8rem, 6vw, 4.4rem);
+    font-size: clamp(1.8em, 6vw, 4.4em);
     line-height: 1.3;
 }
 
@@ -94,6 +94,36 @@
         3px 3px 0 var(--ink), -3px 3px 0 var(--ink),
         3px -3px 0 var(--ink), -3px -3px 0 var(--ink),
         5px 5px 0 rgba(26, 26, 26, 0.35);
+}
+
+.banner-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65em;
+    margin: 0;
+    padding: 10px 16px;
+    border: 2px solid var(--ink);
+    border-radius: 9px;
+    background: var(--paper);
+    box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--paper) 68%, #000);
+    color: var(--ink);
+    font-family: var(--font-pixel);
+    font-size: clamp(0.7em, 1.8vw, 0.9em);
+    font-synthesis: none;
+    line-height: 1.6;
+}
+
+.banner-meta-separator {
+    width: 0.35em;
+    height: 0.35em;
+    flex: 0 0 auto;
+    background: var(--py-red);
+}
+
+.pycon-site:lang(zh-hans) .banner-meta-venue {
+    transform: translateY(-0.18em);
 }
 
 .cta-buttons {
@@ -185,9 +215,9 @@
     box-shadow: 0 calc(var(--brick-depth) + 3px) 0 color-mix(in srgb, var(--brick-color) 62%, #000);
 }
 
-.home-highlight h2 { color: inherit; font-size: 1.35rem; }
+.home-highlight h2 { color: inherit; font-size: 1.35em; }
 .home-highlight p { margin: 0; }
-.highlight-label { margin-bottom: 10px !important; font-family: var(--font-pixel); font-size: 0.62rem; }
+.highlight-label { margin-bottom: 10px !important; font-family: var(--font-pixel); font-size: 0.62em; }
 .home-highlight { text-decoration: none; }
 .highlight-purple { --brick-color: var(--py-purple); --brick-on: var(--brick-on-dark); transform: translateY(16px); }
 .highlight-blue { --brick-color: var(--py-blue); }
@@ -229,7 +259,7 @@
 
     .banner-title {
         gap: 0.28em;
-        font-size: 1.45rem;
+        font-size: 1.45em;
     }
 
 

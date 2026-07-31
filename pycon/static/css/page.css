@@ -11,7 +11,7 @@
     box-shadow: 0 5px 0 color-mix(in srgb, var(--py-green) 68%, #000);
     color: var(--ink);
     font-family: var(--font-pixel);
-    font-size: 0.82rem;
+    font-size: 0.82em;
     font-weight: 400;
 }
 
@@ -22,21 +22,20 @@
 .error-page-message {
     margin: 0 0 28px;
     color: var(--ink-soft);
-    font-size: 1.1rem;
+    font-size: 1.1em;
 }
 
 .error-page-icon {
     display: block;
     margin-bottom: 20px;
     color: var(--py-blue);
-    font-size: 3rem;
+    font-size: 3em;
     opacity: 0.7;
 }
 
 .error-page-subtitle {
     margin-top: 10px;
     color: inherit;
-    font-size: 1.1rem;
+    font-size: 1.1em;
     opacity: 0.8;
 }
-

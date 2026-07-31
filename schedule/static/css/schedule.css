@@ -6,7 +6,7 @@
 .schedule-list { min-width: 1000px; margin-bottom: 24px; }
 .schedule-table { display: grid; grid-template-rows: 104px; grid-auto-rows: minmax(104px, auto); border: 2px solid var(--ink); background: var(--paper-muted); }
 .schedule-table-header { display: flex; align-items: center; justify-content: center; flex-direction: column; background: var(--py-yellow); color: var(--ink); font-weight: 700; }
-.schedule-table-item { display: flex; align-items: stretch; padding: 5px 8px; font-size: .9rem; text-align: center; }
+.schedule-table-item { display: flex; align-items: stretch; padding: 5px 8px; font-size: .9em; text-align: center; }
 .schedule-item { display: flex; flex: 1; min-height: 88px; align-items: center; justify-content: center; flex-direction: column; gap: 6px; border-radius: 5px; padding: 10px 8px; color: var(--ink); line-height: 1.35; }
 .schedule-item.talk { background: var(--py-blue); border-bottom: 4px solid color-mix(in srgb, var(--py-blue) 68%, #000); }
 .schedule-item.misc { background: var(--paper); border: 1px solid #b9d8ca; }

@@ -20,7 +20,7 @@
     font-display: swap;
 }
 
-:root {
+.pycon-site {
     --bg-base: #3daa84;
     --bg-dot: #4fb089;
     --bg-deep: #2a7f61; /* darkened from #2e8c6b so white footer text passes WCAG AA (4.88) */
@@ -52,30 +52,34 @@
     --radius-pixel: 0;
     --content-width: 1200px;
     --ease-ui: 180ms ease-out;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 18px;
-    scroll-behavior: smooth;
+    --space-half-rem: 9px;
+    --space-rem: 18px;
+    --space-double-rem: 36px;
 }
 
 body {
-    min-height: 100vh;
     margin: 0;
+}
+
+@scope (.pycon-site) {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:scope {
+    min-height: 100vh;
     padding-top: 80px;
     color: var(--ink);
     background-color: var(--bg-base);
     background-image: radial-gradient(var(--bg-dot) 2.5px, transparent 2.5px);
     background-size: 22px 22px;
     font-family: var(--font-body);
+    font-size: 18px;
     line-height: 1.6;
 }
 
-body,
 button,
 input,
 select,
@@ -126,12 +130,12 @@ h6 {
 }
 
 h2 {
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    margin: 0 0 1rem;
+    font-size: clamp(1.5em, 3vw, 2.2em);
+    margin: 0 0 var(--space-rem);
 }
 
 p {
-    margin: 0 0 1rem;
+    margin: 0 0 var(--space-rem);
 }
 
 main {
@@ -195,7 +199,7 @@ main {
     position: relative;
     z-index: 1;
     margin-bottom: 20px;
-    padding: 1rem;
+    padding: var(--space-rem);
     overflow: visible;
     border: 0;
     border-radius: 10px;
@@ -249,7 +253,7 @@ main {
     padding: calc(var(--stud-size) + 10px) 0 10px;
     border-bottom: 2px solid var(--brick-on);
     color: var(--brick-on);
-    font-size: 1.3rem;
+    font-size: 1.3em;
     font-weight: 700;
 }
 
@@ -297,7 +301,7 @@ main {
     background: var(--py-yellow);
     color: var(--ink);
     border-bottom: calc(var(--brick-depth) + 2px) solid color-mix(in srgb, var(--py-yellow) 70%, #000);
-    font-size: clamp(1.1rem, 3vw, 1.8rem);
+    font-size: clamp(1.1em, 3vw, 1.8em);
     line-height: 1.45;
 }
 
@@ -325,7 +329,7 @@ main {
     background: var(--py-yellow);
     color: var(--ink);
     border-bottom: calc(var(--brick-depth) + 2px) solid color-mix(in srgb, var(--py-yellow) 70%, #000);
-    font-size: clamp(1.25rem, 4vw, 2.25rem);
+    font-size: clamp(1.25em, 4vw, 2.25em);
     line-height: 1.45;
 }
 
@@ -336,14 +340,14 @@ button:not(.language-btn):not(.mobile-close) {
     min-height: 44px;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: var(--space-half-rem);
     padding: 10px 18px;
     border: var(--border-ink);
     background: var(--py-yellow);
     border-bottom: calc(var(--brick-depth) + 2px) solid color-mix(in srgb, var(--py-yellow) 70%, #000);
     color: var(--ink);
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 700;
     text-decoration: none;
     touch-action: manipulation;
@@ -367,7 +371,7 @@ button:not(.language-btn):not(.mobile-close):active {
 
 .talk-badge {
     display: inline-block;
-    margin-left: 0.5rem;
+    margin-left: var(--space-half-rem);
     padding: 0.35em 0.6em;
     border: 2px solid var(--ink);
     border-radius: 0;
@@ -435,13 +439,13 @@ button:not(.language-btn):not(.mobile-close):active {
 
 .brand-name {
     font-family: var(--font-pixel);
-    font-size: 0.78rem;
+    font-size: 0.78em;
 }
 
 .brand-year {
     color: var(--py-red);
     font-family: var(--font-pixel);
-    font-size: 0.62rem;
+    font-size: 0.62em;
     line-height: 1.5;
 }
 
@@ -477,7 +481,7 @@ button:not(.language-btn):not(.mobile-close):active {
     box-shadow: 0 3px 0 rgba(26, 26, 26, 0.22);
     color: var(--ink);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: 700;
     text-decoration: none;
     touch-action: manipulation;
@@ -511,7 +515,7 @@ button:not(.language-btn):not(.mobile-close):active {
 }
 
 .dropdown-arrow {
-    font-size: 0.72rem;
+    font-size: 0.72em;
     transition: transform var(--ease-ui);
 }
 
@@ -551,7 +555,7 @@ button:not(.language-btn):not(.mobile-close):active {
     padding: 8px 10px;
     border: 2px solid transparent;
     color: var(--ink);
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: 700;
     text-decoration: none;
 }
@@ -630,7 +634,7 @@ button:not(.language-btn):not(.mobile-close):active {
     gap: 10px;
     color: var(--ink);
     font-family: var(--font-pixel);
-    font-size: 0.68rem;
+    font-size: 0.68em;
 }
 
 .mobile-logo {
@@ -648,7 +652,7 @@ button:not(.language-btn):not(.mobile-close):active {
     background: var(--py-red);
     color: var(--ink);
     cursor: pointer;
-    font-size: 1.15rem;
+    font-size: 1.15em;
 }
 
 .mobile-nav-links {
@@ -672,7 +676,7 @@ button:not(.language-btn):not(.mobile-close):active {
     background: #fff5a8;
     box-shadow: 0 3px 0 rgba(26, 26, 26, 0.22);
     color: var(--ink);
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 700;
     text-decoration: none;
 }
@@ -704,7 +708,7 @@ button:not(.language-btn):not(.mobile-close):active {
     padding: 14px 0 6px;
     color: var(--ink);
     font-family: var(--font-pixel);
-    font-size: 0.62rem;
+    font-size: 0.62em;
     line-height: 1.5;
 }
 
@@ -780,7 +784,7 @@ button:not(.language-btn):not(.mobile-close):active {
     margin: 0 0 4px;
     color: var(--paper);
     font-family: var(--font-pixel);
-    font-size: 0.82rem;
+    font-size: 0.82em;
     line-height: 1.6;
 }
 
@@ -791,7 +795,7 @@ button:not(.language-btn):not(.mobile-close):active {
 }
 
 .footer-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.9em;
 }
 
 .social-links {
@@ -824,7 +828,7 @@ button:not(.language-btn):not(.mobile-close):active {
     padding-bottom: 8px;
     border-bottom: 3px solid var(--py-yellow);
     color: var(--paper);
-    font-size: 1rem;
+    font-size: 1em;
     font-weight: 700;
 }
 
@@ -841,7 +845,7 @@ button:not(.language-btn):not(.mobile-close):active {
     border: 2px solid var(--ink);
     background: var(--paper);
     color: var(--ink);
-    font-size: 0.82rem;
+    font-size: 0.82em;
     font-weight: 700;
     text-decoration: none;
 }
@@ -910,7 +914,7 @@ button:not(.language-btn):not(.mobile-close):active {
 
 @media (min-width: 992px) {
     .card {
-        padding: 1rem 2rem;
+        padding: var(--space-rem) var(--space-double-rem);
     }
 }
 
@@ -918,7 +922,7 @@ button:not(.language-btn):not(.mobile-close):active {
     .nav-link,
     .language-btn {
         padding: 8px 9px;
-        font-size: 0.82rem;
+        font-size: 0.82em;
     }
 
     .footer-grid {
@@ -931,7 +935,7 @@ button:not(.language-btn):not(.mobile-close):active {
 }
 
 @media (max-width: 800px) {
-    body {
+    :scope {
         padding-top: 70px;
     }
 
@@ -949,11 +953,11 @@ button:not(.language-btn):not(.mobile-close):active {
     }
 
     .brand-name {
-        font-size: 0.66rem;
+        font-size: 0.66em;
     }
 
     .brand-year {
-        font-size: 0.52rem;
+        font-size: 0.52em;
     }
 
     .logo-image {
@@ -976,14 +980,17 @@ button:not(.language-btn):not(.mobile-close):active {
 }
 
 @media (max-width: 560px) {
-    html {
+    :scope {
+        --space-half-rem: 8px;
+        --space-rem: 16px;
+        --space-double-rem: 32px;
         font-size: 16px;
     }
 
     .title,
     .page-title {
         padding: 14px;
-        font-size: 0.88rem;
+        font-size: 0.88em;
     }
 
     .card {
@@ -1018,4 +1025,5 @@ button:not(.language-btn):not(.mobile-close):active {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
     }
+}
 }

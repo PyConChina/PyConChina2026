@@ -18,6 +18,13 @@
             </span>
             <span class="banner-title-year" aria-hidden="true">2026</span>
         </h1>
+        {% if page.date or page.venue %}
+        <p class="banner-meta">
+            {% if page.date %}<time datetime="{{ page.date|date:'Y-m-d' }}">{{ page.date|date:"Y.n.j" }}</time>{% endif %}
+            {% if page.date and page.venue %}<span class="banner-meta-separator" aria-hidden="true"></span>{% endif %}
+            {% if page.venue %}<span class="banner-meta-venue">{{ page.venue }}</span>{% endif %}
+        </p>
+        {% endif %}
     </div>
 </section>
 {% if page.links.all %}

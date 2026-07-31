@@ -1,5 +1,5 @@
 .staff-section { margin: 52px 0; }
-.staff-section-title { display: inline-block; margin: 0 0 26px; padding: 10px 16px; border-radius: 8px; background: var(--py-blue); box-shadow: 0 6px 0 color-mix(in srgb, var(--py-blue) 68%, #000); color: var(--ink); font-family: var(--font-pixel); font-size: .82rem; font-weight: 400; }
+.staff-section-title { display: inline-block; margin: 0 0 26px; padding: 10px 16px; border-radius: 8px; background: var(--py-blue); box-shadow: 0 6px 0 color-mix(in srgb, var(--py-blue) 68%, #000); color: var(--ink); font-family: var(--font-pixel); font-size: .82em; font-weight: 400; }
 .staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px 22px; }
 .staff-member { --brick-color: var(--paper); --on-strong: var(--accent); --on-soft: var(--ink-soft); position: relative; min-height: 310px; padding: 30px 22px 24px; border-radius: 12px; background: var(--brick-color); background-image: linear-gradient(180deg, rgba(255,255,255,.2), transparent 40%); box-shadow: 0 var(--brick-depth) 0 color-mix(in srgb, var(--brick-color) 68%, #000); color: var(--ink); text-align: center; transition: transform var(--ease-ui), box-shadow var(--ease-ui); }
 /* Accent/soft text only passes AA on the paper brick; colored bricks use full ink. */
@@ -10,7 +10,7 @@
 .staff-member::before { position:absolute; top:-9px; left:20px; right:20px; height:18px; background:radial-gradient(circle at 9px center, color-mix(in srgb,var(--brick-color) 82%,#000) 0 7px,transparent 7px); background-size:30px 18px; background-repeat:repeat-x; content:""; pointer-events:none; }
 .staff-member:hover { transform: translateY(-3px); box-shadow: 0 calc(var(--brick-depth) + 3px) 0 color-mix(in srgb,var(--brick-color) 68%,#000); }
 .staff-avatar { width:112px; height:112px; margin:0 auto 18px; border-radius:50%; border:5px solid var(--paper); background:var(--paper); object-fit:cover; }
-.staff-name { margin-bottom:8px; color:inherit; font-size:1.35rem; font-weight:700; }
+.staff-name { margin-bottom:8px; color:inherit; font-size:1.35em; font-weight:700; }
 .staff-role { margin-bottom:12px; color:var(--on-strong); font-weight:700; }
 .staff-bio { margin-bottom:16px; color:var(--on-soft); line-height:1.6; }
 .staff-contact { display:flex; justify-content:center; gap:10px; }

@@ -52,17 +52,19 @@
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
 
-        {% include "components/navbar.html" %}
+        <div class="pycon-site">
+            {% include "components/navbar.html" %}
 
-        <div class="page-shell">
-            <img class="site-corner site-corner-tl" src="{% static 'images/decor/corner-tl.svg' %}" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-tr" src="{% static 'images/decor/corner-tr.svg' %}" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-bl" src="{% static 'images/decor/corner-bl.svg' %}" alt="" aria-hidden="true">
-            <img class="site-corner site-corner-br" src="{% static 'images/decor/corner-br.svg' %}" alt="" aria-hidden="true">
-            {% block content %}{% endblock %}
+            <div class="page-shell">
+                <img class="site-corner site-corner-tl" src="{% static 'images/decor/corner-tl.svg' %}" alt="" aria-hidden="true">
+                <img class="site-corner site-corner-tr" src="{% static 'images/decor/corner-tr.svg' %}" alt="" aria-hidden="true">
+                <img class="site-corner site-corner-bl" src="{% static 'images/decor/corner-bl.svg' %}" alt="" aria-hidden="true">
+                <img class="site-corner site-corner-br" src="{% static 'images/decor/corner-br.svg' %}" alt="" aria-hidden="true">
+                {% block content %}{% endblock %}
+            </div>
+
+            {% include "components/footer.html" %}
         </div>
-
-        {% include "components/footer.html" %}
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/pycon.js' %}"></script>
 
