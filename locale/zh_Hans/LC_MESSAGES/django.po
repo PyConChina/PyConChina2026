@@ -26,6 +26,15 @@ msgstr "会议亮点"
 msgid "EXPLORE"
 msgstr "探索"
 
+msgid "MEET THE COMMUNITY"
+msgstr "认识社区"
+
+msgid "Speakers"
+msgstr "讲师阵容"
+
+msgid "Meet the people sharing their ideas and experience at PyCon China 2026."
+msgstr "认识将在 PyCon China 2026 分享想法与经验的讲师。"
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "页面未找到"

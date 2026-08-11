@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static i18n %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
@@ -51,4 +51,29 @@
     </article>
     {% endfor %}
 </main>
+{% with speakers=page.get_speakers %}
+{% if speakers %}
+<section class="home-speakers" aria-labelledby="home-speakers-title">
+    <header class="home-speakers-header">
+        <p class="home-speakers-kicker">{% translate "MEET THE COMMUNITY" %}</p>
+        <h2 id="home-speakers-title">{% translate "Speakers" %}</h2>
+        <p>{% translate "Meet the people sharing their ideas and experience at PyCon China 2026." %}</p>
+    </header>
+    <ul class="home-speaker-grid" role="list">
+        {% for speaker in speakers %}
+        {% cycle 'yellow' 'blue' 'red' 'green' 'purple' as speaker_color silent %}
+        <li class="home-speaker speaker-{{ speaker_color }}">
+            <div class="home-speaker-portrait">
+                {% image speaker.avatar fill-320x320 loading="lazy" alt="" %}
+            </div>
+            <div class="home-speaker-info">
+                <h3>{{ speaker.name }}</h3>
+                {% if speaker.bio %}<p>{{ speaker.bio }}</p>{% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
+{% endwith %}
 {% endblock %}

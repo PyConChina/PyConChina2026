@@ -26,6 +26,15 @@ msgstr "Conference highlights"
 msgid "EXPLORE"
 msgstr ""
 
+msgid "MEET THE COMMUNITY"
+msgstr "MEET THE COMMUNITY"
+
+msgid "Speakers"
+msgstr "Speakers"
+
+msgid "Meet the people sharing their ideas and experience at PyCon China 2026."
+msgstr "Meet the people sharing their ideas and experience at PyCon China 2026."
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "Page not found"

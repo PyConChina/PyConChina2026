@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Min
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail import blocks
@@ -21,6 +22,20 @@ class HomePage(Page):
         FieldPanel("body"),
         InlinePanel("links", heading="Related Links", label="Related Links"),
     ]
+
+    def get_speakers(self):
+        from talk.models import Author
+
+        return (
+            Author.objects.filter(
+                locale=self.locale,
+                talkpage__live=True,
+                talkpage__locale=self.locale,
+            )
+            .select_related("avatar")
+            .annotate(first_talk_position=Min("talkpage__position"))
+            .order_by("first_talk_position", "name")
+        )
 
 
 class ArticlePage(Page):
