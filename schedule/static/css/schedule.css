@@ -1,8 +1,9 @@
 .schedule-page-container { width: min(calc(100% - 32px), 1400px); margin: 0 auto; padding: 26px 0; }
 /* Panel look comes from the shared .content-panel/.talk-content rule in pycon.css. */
 .schedule-page-container .talk-content { margin-bottom: 28px; }
-.schedule-content { overflow-x: auto; padding: 12px 0; }
+.schedule-content { padding: 12px 0; }
 .schedule-download { margin-bottom: 20px; }
+.schedule-city-tables { overflow-x: auto; padding: 12px 0; }
 .schedule-list { min-width: 1000px; margin-bottom: 24px; }
 .schedule-table { display: grid; grid-template-rows: 104px; grid-auto-rows: minmax(104px, auto); border: 2px solid var(--ink); background: var(--paper-muted); }
 .schedule-table-header { display: flex; align-items: center; justify-content: center; flex-direction: column; background: var(--py-yellow); color: var(--ink); font-weight: 700; }

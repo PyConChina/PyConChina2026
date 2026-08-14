@@ -3,9 +3,9 @@
 <div class="content-panel schedule-list">
     <div class="schedule-list-date">{{ date|date:"Y-m-d" }}</div>
     {% get_schedule_boundaries rooms as boundaries %}
-    {% with columns=rooms.keys %}
-    <div class="schedule-table" style="grid-template-columns: repeat({{ columns|length|add:"-1" }}, 1fr)">
-        {% for room in columns %}
+    {% get_room_column_count rooms as room_column_count %}
+    <div class="schedule-table" style="grid-template-columns: repeat({{ room_column_count }}, 1fr)">
+        {% for room in rooms.keys %}
             {% if room != "none_type" %}
                 <div class="schedule-table-header" style="grid-row: 1; grid-column: {{ forloop.counter|add:"-1" }}">
                     <span>{{ room.name }}</span>
@@ -22,5 +22,4 @@
             {% endwith %}
         {% endfor %}
     </div>
-    {% endwith %}
 </div>

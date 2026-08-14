@@ -134,7 +134,7 @@ const observeCards = () => {
 
 // 平滑滚动到锚点
 const initSmoothScroll = () => {
-    const links = document.querySelectorAll('a[href^="#"]');
+    const links = document.querySelectorAll('a[href^="#"]:not([data-city-tab])');
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -144,6 +144,94 @@ const initSmoothScroll = () => {
                     behavior: 'smooth',
                     block: 'start'
                 });
+            }
+        });
+    });
+};
+
+const initCityTabs = () => {
+    const tabGroups = document.querySelectorAll('[data-city-tabs]');
+
+    tabGroups.forEach(tabGroup => {
+        const tabList = tabGroup.querySelector('[data-city-tablist]');
+        const tabs = Array.from(tabGroup.querySelectorAll('[data-city-tab]'));
+        const panels = Array.from(tabGroup.querySelectorAll('[data-city-tab-panel]'));
+
+        if (!tabList || tabs.length === 0 || panels.length === 0) {
+            return;
+        }
+
+        tabList.setAttribute('role', 'tablist');
+        tabs.forEach(tab => tab.setAttribute('role', 'tab'));
+        panels.forEach(panel => {
+            const controllingTab = tabs.find(
+                tab => tab.getAttribute('aria-controls') === panel.id
+            );
+            panel.setAttribute('role', 'tabpanel');
+            panel.setAttribute('tabindex', '0');
+            if (controllingTab) {
+                panel.setAttribute('aria-labelledby', controllingTab.id);
+            }
+        });
+        tabGroup.classList.add('is-enhanced');
+
+        const activateTab = (tab, updateHash = false) => {
+            const panelId = tab.getAttribute('aria-controls');
+
+            tabs.forEach(candidate => {
+                const isActive = candidate === tab;
+                candidate.setAttribute('aria-selected', String(isActive));
+                candidate.setAttribute('tabindex', isActive ? '0' : '-1');
+            });
+
+            panels.forEach(panel => {
+                const isActive = panel.id === panelId;
+                panel.hidden = !isActive;
+            });
+
+            if (updateHash && window.location.hash !== `#${panelId}`) {
+                window.history.replaceState(null, '', `#${panelId}`);
+            }
+        };
+
+        const tabForHash = () => {
+            const panelId = window.location.hash.slice(1);
+            return tabs.find(tab => tab.getAttribute('aria-controls') === panelId);
+        };
+
+        activateTab(tabForHash() || tabs[0]);
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', event => {
+                event.preventDefault();
+                activateTab(tab, true);
+            });
+
+            tab.addEventListener('keydown', event => {
+                let nextIndex;
+
+                if (event.key === 'ArrowLeft') {
+                    nextIndex = (index - 1 + tabs.length) % tabs.length;
+                } else if (event.key === 'ArrowRight') {
+                    nextIndex = (index + 1) % tabs.length;
+                } else if (event.key === 'Home') {
+                    nextIndex = 0;
+                } else if (event.key === 'End') {
+                    nextIndex = tabs.length - 1;
+                } else {
+                    return;
+                }
+
+                event.preventDefault();
+                tabs[nextIndex].focus();
+                activateTab(tabs[nextIndex], true);
+            });
+        });
+
+        window.addEventListener('hashchange', () => {
+            const matchingTab = tabForHash();
+            if (matchingTab) {
+                activateTab(matchingTab);
             }
         });
     });
@@ -202,8 +290,8 @@ const pageLoadAnimation = () => {
 
 // 初始化所有功能
 const initializeEnhancements = () => {
-    initModernNavbar();
     observeCards();
+    initCityTabs();
     initSmoothScroll();
     addFloatingAnimation();
     enhanceSearchInput();

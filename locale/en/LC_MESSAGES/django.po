@@ -35,6 +35,36 @@ msgstr "Speakers"
 msgid "Meet the people sharing their ideas and experience at PyCon China 2026."
 msgstr "Meet the people sharing their ideas and experience at PyCon China 2026."
 
+msgid "CHOOSE YOUR CITY"
+msgstr "CHOOSE YOUR CITY"
+
+msgid "Conference cities"
+msgstr "Conference cities"
+
+msgid "Talks"
+msgstr "Talks"
+
+msgid "Schedule"
+msgstr "Schedule"
+
+msgid "Choose a city"
+msgstr "Choose a city"
+
+msgid "Talks will be announced soon."
+msgstr "Talks will be announced soon."
+
+msgid "The schedule will be announced soon."
+msgstr "The schedule will be announced soon."
+
+msgid "The talk and schedule must belong to the same city."
+msgstr "The talk and schedule must belong to the same city."
+
+msgid "End date must not be earlier than start date."
+msgstr "End date must not be earlier than start date."
+
+msgid "Date and venue to be announced."
+msgstr "Date and venue to be announced."
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "Page not found"

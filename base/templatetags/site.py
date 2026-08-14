@@ -51,6 +51,11 @@ def get_schedule_boundaries(rooms: dict[object, list[Schedule]]) -> list[time]:
 
 
 @register.simple_tag
+def get_room_column_count(rooms: dict[object, list[Schedule]]) -> int:
+    return max(sum(room != "none_type" for room in rooms), 1)
+
+
+@register.simple_tag
 def row_index(boundaries: list[time], value: time) -> int:
     return boundaries.index(value)
 
@@ -78,6 +83,14 @@ def i18n_url(context, page: Page) -> str:
             f"/{settings.URL_PREFIX}{page.locale.language_code}/",
         )
     return url
+
+
+@register.simple_tag(takes_context=True)
+def i18n_city_url(context, page: Page, city_slug: str) -> str:
+    url = i18n_url(context, page)
+    if not url:
+        return url
+    return f"{url}#city-{city_slug}"
 
 
 @register.simple_tag

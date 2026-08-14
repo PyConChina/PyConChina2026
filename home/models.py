@@ -12,16 +12,27 @@ class ContentBlock(blocks.StructBlock):
 
 
 class HomePage(Page):
-    venue = models.CharField(max_length=255, blank=True, null=True)
-    date = models.DateField(blank=True, null=True)
     body = StreamField([('paragraph', ContentBlock())])
 
     content_panels = Page.content_panels + [
-        FieldPanel("venue"),
-        FieldPanel("date"),
         FieldPanel("body"),
         InlinePanel("links", heading="Related Links", label="Related Links"),
     ]
+
+    def get_cities(self):
+        from base.models import ConferenceCity
+
+        return ConferenceCity.objects.filter(locale=self.locale)
+
+    def get_talk_index(self):
+        from talk.models import TalkListPage
+
+        return TalkListPage.objects.child_of(self).live().first()
+
+    def get_schedule_index(self):
+        from schedule.models import ScheduleListPage
+
+        return ScheduleListPage.objects.child_of(self).live().first()
 
     def get_speakers(self):
         from talk.models import Author

@@ -5,7 +5,7 @@
     style="
         {% row_index boundaries schedule.start_time as start_row %}
         {% row_index boundaries schedule.end_time as end_row %}
-        {% if index == 1 %}
+        {% if room == "none_type" %}
             grid-row-start: {{ start_row|add:"2" }}; grid-row-end: {{ end_row|add:"2" }};
             grid-column: 1 / -1;
         {% else %}

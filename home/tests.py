@@ -1,8 +1,9 @@
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from wagtail.images import get_image_model
-from wagtail.models import Locale, Page
+from wagtail.models import Locale, Page, Site
 
+from base.models import ConferenceCity
 from home.models import HomePage
 from talk.models import Author, TalkListPage, TalkPage
 
@@ -19,6 +20,15 @@ class HomePageSpeakersTests(TestCase):
                 locale=cls.locale,
                 body=[],
             )
+        )
+        Site.objects.update(root_page=cls.home)
+        Site.clear_site_root_paths_cache()
+        cls.city = ConferenceCity.objects.create(
+            name="Shanghai",
+            slug="shanghai",
+            venue="Main venue",
+            locale=cls.locale,
+            position=10,
         )
         cls.talk_list = cls.home.add_child(
             instance=TalkListPage(
@@ -62,6 +72,7 @@ class HomePageSpeakersTests(TestCase):
                 slug="first-talk",
                 locale=cls.locale,
                 position=20,
+                city=cls.city,
             )
         )
         first_talk.authors.add(cls.first_speaker)
@@ -74,6 +85,7 @@ class HomePageSpeakersTests(TestCase):
                 slug="second-talk",
                 locale=cls.locale,
                 position=10,
+                city=cls.city,
             )
         )
         second_talk.authors.add(cls.second_speaker)
@@ -86,10 +98,16 @@ class HomePageSpeakersTests(TestCase):
                 locale=cls.locale,
                 position=1,
                 live=False,
+                city=cls.city,
             )
         )
         draft_talk.authors.add(cls.draft_speaker)
         draft_talk.save()
+
+    @classmethod
+    def tearDownClass(cls):
+        super().tearDownClass()
+        Site.clear_site_root_paths_cache()
 
     def test_get_speakers_only_returns_authors_with_live_talks(self):
         self.assertQuerySetEqual(
@@ -101,3 +119,19 @@ class HomePageSpeakersTests(TestCase):
         speaker_ids = list(self.home.get_speakers().values_list("id", flat=True))
 
         self.assertEqual(speaker_ids.count(self.second_speaker.id), 1)
+
+    def test_get_cities_only_returns_current_locale(self):
+        english, _ = Locale.objects.get_or_create(language_code="en")
+        ConferenceCity.objects.create(
+            name="Shanghai",
+            slug="shanghai",
+            locale=english,
+        )
+
+        self.assertQuerySetEqual(self.home.get_cities(), [self.city])
+
+    def test_homepage_renders_city_destinations(self):
+        response = self.client.get("/2026/", HTTP_HOST="localhost")
+
+        self.assertContains(response, "Shanghai")
+        self.assertContains(response, '#city-shanghai')

@@ -28,13 +28,28 @@ class TalkListPage(Page):
         FieldPanel("body"),
     ]
 
-    def get_talks(self):
-        return (
+    def get_cities(self):
+        from base.models import ConferenceCity
+
+        return ConferenceCity.objects.filter(locale=self.locale)
+
+    def get_talks(self, city=None):
+        talks = (
             self.get_children()
             .live()
             .filter(talkpage__type__in=(TalkType.KEYNOTE, TalkType.LIGHTNING))
             .order_by("talkpage__position", "id")
+            .specific()
         )
+        if city is not None:
+            talks = talks.filter(talkpage__city=city)
+        return talks
+
+    def get_talk_groups(self):
+        return [
+            {"city": city, "talks": self.get_talks(city)}
+            for city in self.get_cities()
+        ]
 
 
 class TalkPage(RoutablePageMixin, Page):
@@ -44,6 +59,11 @@ class TalkPage(RoutablePageMixin, Page):
     type = models.CharField(
         max_length=32, choices=TalkType.choices, default=TalkType.KEYNOTE
     )
+    city = models.ForeignKey(
+        "base.ConferenceCity",
+        on_delete=models.PROTECT,
+        related_name="talks",
+    )
     authors = ParentalManyToManyField("talk.Author")
     position = models.IntegerField(default=100, help_text="Position in the list")
 
@@ -52,6 +72,7 @@ class TalkPage(RoutablePageMixin, Page):
         FieldPanel("abstract"),
         FieldPanel("body"),
         FieldPanel("type"),
+        FieldPanel("city"),
         FieldPanel("position"),
     ]
 

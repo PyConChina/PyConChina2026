@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static i18n %}
+{% load static i18n site %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block extra_css %}
@@ -18,15 +18,54 @@
             </span>
             <span class="banner-title-year" aria-hidden="true">2026</span>
         </h1>
-        {% if page.date or page.venue %}
-        <p class="banner-meta">
-            {% if page.date %}<time datetime="{{ page.date|date:'Y-m-d' }}">{{ page.date|date:"Y.n.j" }}</time>{% endif %}
-            {% if page.date and page.venue %}<span class="banner-meta-separator" aria-hidden="true"></span>{% endif %}
-            {% if page.venue %}<span class="banner-meta-venue">{{ page.venue }}</span>{% endif %}
-        </p>
-        {% endif %}
     </div>
 </section>
+{% with cities=page.get_cities talk_index=page.get_talk_index schedule_index=page.get_schedule_index %}
+{% if cities %}
+<section class="home-cities" aria-labelledby="home-cities-title">
+    <header class="home-cities-header">
+        <p class="home-cities-kicker">{% translate "CHOOSE YOUR CITY" %}</p>
+        <h2 id="home-cities-title">{% translate "Conference cities" %}</h2>
+    </header>
+    <div class="home-city-grid">
+        {% for city in cities %}
+        {% cycle 'yellow' 'blue' 'red' 'green' 'purple' as city_color silent %}
+        <article class="home-city card studded brick-{{ city_color }}">
+            <h3>{{ city.name }}</h3>
+            <p class="home-city-meta">
+                {% if city.start_date or city.venue %}
+                    {% if city.start_date %}
+                        <time datetime="{{ city.start_date|date:'Y-m-d' }}">{{ city.start_date|date:"Y.n.j" }}</time>
+                        {% if city.end_date and city.end_date != city.start_date %}
+                            <span aria-hidden="true">–</span>
+                            <time datetime="{{ city.end_date|date:'Y-m-d' }}">{{ city.end_date|date:"Y.n.j" }}</time>
+                        {% endif %}
+                    {% endif %}
+                    {% if city.venue %}<span>{{ city.venue }}</span>{% endif %}
+                {% else %}
+                    <span>{% translate "Date and venue to be announced." %}</span>
+                {% endif %}
+            </p>
+            <div class="home-city-actions">
+                {% if talk_index %}
+                    <a class="home-city-link" href="{% i18n_city_url talk_index city.slug %}">
+                        <i class="fa-solid fa-microphone" aria-hidden="true"></i>
+                        {% translate "Talks" %}
+                    </a>
+                {% endif %}
+                {% if schedule_index %}
+                    <a class="home-city-link" href="{% i18n_city_url schedule_index city.slug %}">
+                        <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                        {% translate "Schedule" %}
+                    </a>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endwith %}
 {% if page.links.all %}
 <section class="home-highlights" aria-label="{% translate 'Conference highlights' %}">
     {% for link in page.links.all %}

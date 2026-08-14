@@ -316,6 +316,85 @@ main {
     text-align: center;
 }
 
+.city-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 0 38px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.city-switcher-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    padding: 8px 16px;
+    border: 2px solid var(--ink);
+    border-radius: 7px;
+    background: var(--paper);
+    box-shadow: 0 4px 0 color-mix(in srgb, var(--paper) 68%, #000);
+    color: var(--ink);
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.city-switcher-link:hover {
+    background: var(--py-yellow);
+    color: var(--ink);
+    transform: translateY(-2px);
+}
+
+.city-switcher-link[aria-selected="true"] {
+    background: var(--py-yellow);
+    box-shadow: inset 0 -4px 0 var(--ink);
+    transform: translateY(2px);
+}
+
+.city-section {
+    margin-bottom: 58px;
+    scroll-margin-top: 100px;
+}
+
+.city-tabs.is-enhanced .city-section {
+    margin-bottom: 0;
+}
+
+.city-tabs.is-enhanced .city-section[hidden] {
+    display: none;
+}
+
+.city-section-header {
+    display: inline-block;
+    margin-bottom: 26px;
+    padding: 16px 20px;
+    border: var(--border-ink);
+    border-radius: 9px;
+    border-bottom: calc(var(--brick-depth) + 2px) solid color-mix(in srgb, var(--py-green) 68%, #000);
+    background: var(--py-green);
+}
+
+.city-section-header h2 {
+    margin: 0;
+    font-family: var(--font-pixel);
+    font-size: clamp(1.05em, 3vw, 1.55em);
+    font-weight: 400;
+    font-synthesis: none;
+}
+
+.city-section-header p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin: 8px 0 0;
+}
+
+.city-empty {
+    margin: 0;
+}
+
 /* Intro copy now always sits on a .content-panel (never bare on the baseplate),
    so links keep the standard accent-on-paper treatment (AA 5.74). If content must
    ever sit directly on the baseplate, use ink text — accent fails there (1.99). */

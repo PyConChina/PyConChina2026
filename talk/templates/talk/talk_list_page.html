@@ -19,36 +19,76 @@
         </div>
     {% endif %}
 
-    {% for child in page.get_talks %}
-        <div class="content-panel talk-list-item">
-            <h3 class="card-header talk-list-title">
-                <a href="{% i18n_url child %}">{{ child.title }}</a>
-                {% include "snippets/badge.html" with page=child.specific %}
-            </h3>
-            <div class="content">
-                <div class="talk-item">
-                    <div>
-                        {{ child.specific.abstract }}
-                        <div class="speak-by">
-                            <h3>{% translate "Speaker" %}</h3>
-                            <ul>
-                                {% for author in child.specific.authors.all %}
-                                    <li>
-                                        <span style="font-weight: bold;">{{ author.name }}</span>
-                                        {% if author.bio %}<span> - {{ author.bio }}</span>{% endif %}
-                                    </li>
-                                {% endfor %}
-                            </ul>
+    <div class="city-tabs" data-city-tabs>
+        {% with cities=page.get_cities %}
+        {% if cities %}
+            <nav class="city-switcher" aria-label="{% translate 'Choose a city' %}" data-city-tablist>
+                {% for city in cities %}
+                    <a
+                        class="city-switcher-link"
+                        id="city-tab-{{ city.slug }}"
+                        href="#city-{{ city.slug }}"
+                        aria-controls="city-{{ city.slug }}"
+                        data-city-tab
+                    >{{ city.name }}</a>
+                {% endfor %}
+            </nav>
+        {% endif %}
+        {% endwith %}
+
+        {% for group in page.get_talk_groups %}
+        <section
+            class="city-section"
+            id="city-{{ group.city.slug }}"
+            aria-labelledby="city-{{ group.city.slug }}-title"
+            data-city-tab-panel
+        >
+            <header class="city-section-header">
+                <h2 id="city-{{ group.city.slug }}-title">{{ group.city.name }}</h2>
+                <p>
+                    {% if group.city.start_date or group.city.venue %}
+                        {% if group.city.start_date %}<time datetime="{{ group.city.start_date|date:'Y-m-d' }}">{{ group.city.start_date|date:"Y-m-d" }}</time>{% endif %}
+                        {% if group.city.venue %}<span>{{ group.city.venue }}</span>{% endif %}
+                    {% else %}
+                        <span>{% translate "Date and venue to be announced." %}</span>
+                    {% endif %}
+                </p>
+            </header>
+            {% for child in group.talks %}
+                <div class="content-panel talk-list-item">
+                    <h3 class="card-header talk-list-title">
+                        <a href="{% i18n_url child %}">{{ child.title }}</a>
+                        {% include "snippets/badge.html" with page=child.specific %}
+                    </h3>
+                    <div class="content">
+                        <div class="talk-item">
+                            <div>
+                                {{ child.specific.abstract }}
+                                <div class="speak-by">
+                                    <h3>{% translate "Speaker" %}</h3>
+                                    <ul>
+                                        {% for author in child.specific.authors.all %}
+                                            <li>
+                                                <strong>{{ author.name }}</strong>
+                                                {% if author.bio %}<span> - {{ author.bio }}</span>{% endif %}
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            {% with first_author=child.specific.authors.all.first %}
+                                {% if first_author.avatar %}
+                                    {% image first_author.avatar fill-240x240 loading="lazy" %}
+                                {% endif %}
+                            {% endwith %}
                         </div>
                     </div>
-                    {% with first_author=child.specific.authors.all.first %}
-                        {% if first_author.avatar %}
-                            {% image first_author.avatar fill-240x240 %}
-                        {% endif %}
-                    {% endwith %}
                 </div>
-            </div>
-        </div>
-    {% endfor %}
+            {% empty %}
+                <p class="content-panel city-empty">{% translate "Talks will be announced soon." %}</p>
+            {% endfor %}
+        </section>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

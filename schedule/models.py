@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import date, datetime
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import QuerySet
 from django.http import HttpResponse
@@ -23,14 +24,32 @@ class ScheduleListPage(RoutablePageMixin, Page):
         InlinePanel("schedules", heading="Schedules", label="Schedules"),
     ]
 
-    def grouped_schedules(self) -> dict[date, dict[Room | str, list[Schedule]]]:
+    def get_cities(self):
+        from base.models import ConferenceCity
+
+        return ConferenceCity.objects.filter(locale=self.locale)
+
+    def grouped_schedules(
+        self, city=None
+    ) -> dict[date, dict[Room | str, list[Schedule]]]:
         result: dict[date, dict[Room | str, list[Schedule]]] = {}
         schedules: QuerySet[Schedule] = self.schedules.order_by("date", "start_time")
+        if city is not None:
+            schedules = schedules.filter(city=city)
         for schedule in schedules:
             result.setdefault(schedule.date, {}).setdefault(
                 schedule.room or "none_type", []
             ).append(schedule)
+        for schedule_date, rooms in list(result.items()):
+            main_venue = rooms.pop("none_type", [])
+            result[schedule_date] = {"none_type": main_venue, **rooms}
         return result
+
+    def get_schedule_groups(self):
+        return [
+            {"city": city, "dates": self.grouped_schedules(city)}
+            for city in self.get_cities()
+        ]
 
     @path("ical/")
     def ical(self, request):
@@ -44,9 +63,14 @@ class ScheduleListPage(RoutablePageMixin, Page):
         for schedule in schedules:
             event = Event()
             if schedule.room:
-                location = f"{schedule.room.name} ({schedule.room.address})"
+                venue = (
+                    f"{schedule.room.name} ({schedule.room.address})"
+                    if schedule.room.address
+                    else schedule.room.name
+                )
             else:
-                location = _("Main Venue")
+                venue = schedule.city.venue or _("Main Venue")
+            location = f"{schedule.city.name} - {venue}"
             event.uid = str(uuid4())
             event.extra.append(ContentLine(name="SUMMARY", value=str(schedule)))
             event.begin = datetime.combine(schedule.date, schedule.start_time)
@@ -61,7 +85,7 @@ class ScheduleListPage(RoutablePageMixin, Page):
             cal.events.append(event)
 
         response = HttpResponse(cal.serialize(), content_type="text/calendar")
-        response["Content-Disposition"] = 'attachment; filename="pycon-china-2025.ics"'
+        response["Content-Disposition"] = 'attachment; filename="pycon-china-2026.ics"'
         return response
 
 
@@ -77,6 +101,11 @@ class Schedule(Orderable):
         related_name="schedule",
         null=True,
         blank=True,
+    )
+    city = models.ForeignKey(
+        "base.ConferenceCity",
+        on_delete=models.PROTECT,
+        related_name="schedules",
     )
     name = models.CharField(
         max_length=255, help_text="Name of the schedule", blank=True
@@ -95,8 +124,16 @@ class Schedule(Orderable):
     def __str__(self) -> str:
         return self.talk.title if self.talk else self.name
 
+    def clean(self):
+        super().clean()
+        if self.talk_id and self.city_id and self.talk.city_id != self.city_id:
+            raise ValidationError(
+                {"talk": _("The talk and schedule must belong to the same city.")}
+            )
+
     panels = [
         FieldPanel("talk"),
+        FieldPanel("city"),
         FieldPanel("name"),
         FieldPanel("start_time"),
         FieldPanel("end_time"),

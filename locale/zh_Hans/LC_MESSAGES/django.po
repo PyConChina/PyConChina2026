@@ -35,6 +35,36 @@ msgstr "讲师阵容"
 msgid "Meet the people sharing their ideas and experience at PyCon China 2026."
 msgstr "认识将在 PyCon China 2026 分享想法与经验的讲师。"
 
+msgid "CHOOSE YOUR CITY"
+msgstr "选择城市"
+
+msgid "Conference cities"
+msgstr "大会城市"
+
+msgid "Talks"
+msgstr "演讲主题"
+
+msgid "Schedule"
+msgstr "日程"
+
+msgid "Choose a city"
+msgstr "选择城市"
+
+msgid "Talks will be announced soon."
+msgstr "演讲主题即将公布。"
+
+msgid "The schedule will be announced soon."
+msgstr "日程即将公布。"
+
+msgid "The talk and schedule must belong to the same city."
+msgstr "演讲主题与日程必须属于同一城市。"
+
+msgid "End date must not be earlier than start date."
+msgstr "结束日期不得早于开始日期。"
+
+msgid "Date and venue to be announced."
+msgstr "时间和场地待公布。"
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "页面未找到"

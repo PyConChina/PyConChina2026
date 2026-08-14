@@ -26,9 +26,53 @@
                 <i class="fa-solid fa-download"></i> {% translate "Download calendar (.ics)" %}
             </a>
         </div>
-        {% for date, rooms in page.grouped_schedules.items %}
-            {% include "snippets/schedule.html" %}
-        {% endfor %}
+        <div class="city-tabs" data-city-tabs>
+            {% with cities=page.get_cities %}
+            {% if cities %}
+                <nav class="city-switcher" aria-label="{% translate 'Choose a city' %}" data-city-tablist>
+                    {% for city in cities %}
+                        <a
+                            class="city-switcher-link"
+                            id="city-tab-{{ city.slug }}"
+                            href="#city-{{ city.slug }}"
+                            aria-controls="city-{{ city.slug }}"
+                            data-city-tab
+                        >{{ city.name }}</a>
+                    {% endfor %}
+                </nav>
+            {% endif %}
+            {% endwith %}
+
+            {% for group in page.get_schedule_groups %}
+            <section
+                class="city-section"
+                id="city-{{ group.city.slug }}"
+                aria-labelledby="city-{{ group.city.slug }}-title"
+                data-city-tab-panel
+            >
+                <header class="city-section-header">
+                    <h2 id="city-{{ group.city.slug }}-title">{{ group.city.name }}</h2>
+                    <p>
+                        {% if group.city.start_date or group.city.venue %}
+                            {% if group.city.start_date %}<time datetime="{{ group.city.start_date|date:'Y-m-d' }}">{{ group.city.start_date|date:"Y-m-d" }}</time>{% endif %}
+                            {% if group.city.venue %}<span>{{ group.city.venue }}</span>{% endif %}
+                        {% else %}
+                            <span>{% translate "Date and venue to be announced." %}</span>
+                        {% endif %}
+                    </p>
+                </header>
+                {% if group.dates %}
+                    <div class="schedule-city-tables">
+                        {% for date, rooms in group.dates.items %}
+                            {% include "snippets/schedule.html" %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="content-panel city-empty">{% translate "The schedule will be announced soon." %}</p>
+                {% endif %}
+            </section>
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
