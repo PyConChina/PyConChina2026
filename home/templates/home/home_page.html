@@ -47,6 +47,12 @@
                 {% endif %}
             </p>
             <div class="home-city-actions">
+                {% if city.registration_url %}
+                    <a class="home-city-register" href="{{ city.registration_url }}">
+                        <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+                        {% translate "Register" %}
+                    </a>
+                {% endif %}
                 {% if talk_index %}
                     <a class="home-city-link" href="{% i18n_city_url talk_index city.slug %}">
                         <i class="fa-solid fa-microphone" aria-hidden="true"></i>

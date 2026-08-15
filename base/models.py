@@ -18,6 +18,7 @@ class ConferenceCity(TranslatableMixin, models.Model):
     venue = models.CharField(max_length=255, blank=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    registration_url = models.URLField(blank=True)
     position = models.PositiveIntegerField(default=100)
 
     panels = [
@@ -26,6 +27,7 @@ class ConferenceCity(TranslatableMixin, models.Model):
         FieldPanel("venue"),
         FieldPanel("start_date"),
         FieldPanel("end_date"),
+        FieldPanel("registration_url"),
         FieldPanel("position"),
     ]
 

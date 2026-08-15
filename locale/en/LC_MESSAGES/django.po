@@ -47,6 +47,9 @@ msgstr "Talks"
 msgid "Schedule"
 msgstr "Schedule"
 
+msgid "Register"
+msgstr "Register"
+
 msgid "Choose a city"
 msgstr "Choose a city"
 

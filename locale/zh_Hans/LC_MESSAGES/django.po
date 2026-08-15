@@ -47,6 +47,9 @@ msgstr "演讲主题"
 msgid "Schedule"
 msgstr "日程"
 
+msgid "Register"
+msgstr "报名"
+
 msgid "Choose a city"
 msgstr "选择城市"
 

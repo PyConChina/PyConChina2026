@@ -27,6 +27,7 @@ class HomePageSpeakersTests(TestCase):
             name="Shanghai",
             slug="shanghai",
             venue="Main venue",
+            registration_url="https://example.com/register/shanghai",
             locale=cls.locale,
             position=10,
         )
@@ -131,7 +132,19 @@ class HomePageSpeakersTests(TestCase):
         self.assertQuerySetEqual(self.home.get_cities(), [self.city])
 
     def test_homepage_renders_city_destinations(self):
+        ConferenceCity.objects.create(
+            name="Shenzhen",
+            slug="shenzhen",
+            locale=self.locale,
+            position=20,
+        )
+
         response = self.client.get("/2026/", HTTP_HOST="localhost")
 
         self.assertContains(response, "Shanghai")
         self.assertContains(response, '#city-shanghai')
+        self.assertContains(
+            response,
+            'href="https://example.com/register/shanghai"',
+        )
+        self.assertContains(response, 'class="home-city-register"', count=1)
