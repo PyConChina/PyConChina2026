@@ -3,7 +3,7 @@ from wagtail.models import Locale, Page, Site
 
 from base.models import ConferenceCity
 from home.models import HomePage
-from talk.models import TalkListPage, TalkPage
+from talk.models import TalkListPage, TalkPage, TalkType
 
 
 class TalkListPageCityTests(TestCase):
@@ -58,6 +58,16 @@ class TalkListPageCityTests(TestCase):
                 position=10,
             )
         )
+        cls.lightning_talk = cls.talk_list.add_child(
+            instance=TalkPage(
+                title="Shanghai lightning talk",
+                slug="shanghai-lightning-talk",
+                locale=cls.locale,
+                city=cls.shanghai,
+                type=TalkType.LIGHTNING,
+                position=30,
+            )
+        )
 
     @classmethod
     def tearDownClass(cls):
@@ -68,6 +78,11 @@ class TalkListPageCityTests(TestCase):
         talks = list(self.talk_list.get_talks(self.shanghai))
 
         self.assertEqual(talks, [self.shanghai_talk])
+
+    def test_get_talks_excludes_lightning_talks(self):
+        talks = list(self.talk_list.get_talks())
+
+        self.assertNotIn(self.lightning_talk, talks)
 
     def test_talk_list_renders_city_sections(self):
         response = self.client.get(
@@ -81,3 +96,4 @@ class TalkListPageCityTests(TestCase):
         self.assertContains(response, 'data-city-tab-panel', count=2)
         self.assertContains(response, "Shanghai talk")
         self.assertContains(response, "Beijing talk")
+        self.assertNotContains(response, "Shanghai lightning talk")

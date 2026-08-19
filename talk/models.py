@@ -37,7 +37,7 @@ class TalkListPage(Page):
         talks = (
             self.get_children()
             .live()
-            .filter(talkpage__type__in=(TalkType.KEYNOTE, TalkType.LIGHTNING))
+            .filter(talkpage__type=TalkType.KEYNOTE)
             .order_by("talkpage__position", "id")
             .specific()
         )
