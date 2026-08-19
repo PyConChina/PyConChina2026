@@ -26,7 +26,7 @@
         <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/banner_2026.png' %}{% endblock %}" />
         <meta property="og:image:alt" content="{% block og_image_alt %}PyCon China 2026 — AI for Good{% endblock %}" />
         <meta property="og:locale" content="{% if LANGUAGE_CODE == 'en' %}en_US{% else %}zh_CN{% endif %}" />
-        <meta property="og:description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{% translate "PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python community." %}{% endif %}" />
+        <meta property="og:description" content="{% block og_description %}{% if page.search_description %}{{ page.search_description }}{% else %}{% translate "PyCon China 2026 · AI for Good — the annual gathering of the Chinese Python community." %}{% endif %}{% endblock %}" />
 
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />

@@ -61,6 +61,7 @@ class TalkListPageCityTests(TestCase):
                 slug="shanghai-talk",
                 locale=cls.locale,
                 city=cls.shanghai,
+                abstract="An abstract written for social sharing.",
                 position=20,
             )
         )
@@ -154,6 +155,17 @@ class TalkListPageCityTests(TestCase):
         with Image.open(io.BytesIO(response.content)) as poster:
             self.assertEqual(poster.size, POSTER_SIZE)
             self.assertEqual(poster.mode, "RGB")
+
+    def test_talk_page_uses_abstract_as_open_graph_description(self):
+        response = self.client.get(
+            "/2026/talks/shanghai-talk/",
+            HTTP_HOST="localhost",
+        )
+
+        self.assertContains(
+            response,
+            'property="og:description" content="An abstract written for social sharing."',
+        )
 
     def test_poster_text_fits_within_bounded_area(self):
         canvas = Image.new("RGB", (800, 400))

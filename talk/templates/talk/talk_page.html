@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block og_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
+{% block og_description %}{% if page.abstract %}{{ page.abstract }}{% else %}{{ block.super }}{% endif %}{% endblock %}
 {% block twitter_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
 
 {% block content %}
