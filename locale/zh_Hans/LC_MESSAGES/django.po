@@ -50,6 +50,9 @@ msgstr "日程"
 msgid "Register"
 msgstr "报名"
 
+msgid "View venue on map"
+msgstr "在地图中查看场地"
+
 msgid "Choose a city"
 msgstr "选择城市"
 

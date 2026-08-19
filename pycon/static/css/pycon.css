@@ -391,6 +391,30 @@ main {
     margin: 8px 0 0;
 }
 
+.city-map-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    touch-action: manipulation;
+}
+
+.city-map-link:hover {
+    color: inherit;
+    text-decoration-thickness: 3px;
+}
+
+.city-map-link:focus-visible {
+    border-radius: 3px;
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
 .city-empty {
     margin: 0;
 }

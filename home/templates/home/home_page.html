@@ -41,7 +41,7 @@
                             <time datetime="{{ city.end_date|date:'Y-m-d' }}">{{ city.end_date|date:"Y.n.j" }}</time>
                         {% endif %}
                     {% endif %}
-                    {% if city.venue %}<span>{{ city.venue }}</span>{% endif %}
+                    {% include "components/city_venue.html" %}
                 {% else %}
                     <span>{% translate "Date and venue to be announced." %}</span>
                 {% endif %}

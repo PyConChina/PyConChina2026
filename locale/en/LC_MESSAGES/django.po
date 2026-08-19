@@ -50,6 +50,9 @@ msgstr "Schedule"
 msgid "Register"
 msgstr "Register"
 
+msgid "View venue on map"
+msgstr "View venue on map"
+
 msgid "Choose a city"
 msgstr "Choose a city"
 

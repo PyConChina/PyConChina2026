@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if city.venue %}
+    {% if city.map_url %}
+        {% translate "View venue on map" as map_label %}
+        <a class="city-map-link" href="{{ city.map_url }}" aria-label="{{ map_label }}: {{ city.venue }}">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <span>{{ city.venue }}</span>
+        </a>
+    {% else %}
+        <span>{{ city.venue }}</span>
+    {% endif %}
+{% endif %}

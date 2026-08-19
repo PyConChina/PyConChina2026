@@ -27,6 +27,7 @@ class HomePageSpeakersTests(TestCase):
             name="Shanghai",
             slug="shanghai",
             venue="Main venue",
+            map_url="https://example.com/maps/shanghai",
             registration_url="https://example.com/register/shanghai",
             locale=cls.locale,
             position=10,
@@ -147,4 +148,9 @@ class HomePageSpeakersTests(TestCase):
             response,
             'href="https://example.com/register/shanghai"',
         )
+        self.assertContains(
+            response,
+            'href="https://example.com/maps/shanghai"',
+        )
+        self.assertContains(response, 'class="city-map-link"', count=1)
         self.assertContains(response, 'class="home-city-register"', count=1)

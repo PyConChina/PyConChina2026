@@ -16,6 +16,10 @@ class ConferenceCity(TranslatableMixin, models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64)
     venue = models.CharField(max_length=255, blank=True)
+    map_url = models.URLField(
+        blank=True,
+        help_text="Link to the venue in a map service",
+    )
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     registration_url = models.URLField(blank=True)
@@ -25,6 +29,7 @@ class ConferenceCity(TranslatableMixin, models.Model):
         FieldPanel("name"),
         FieldPanel("slug"),
         FieldPanel("venue"),
+        FieldPanel("map_url"),
         FieldPanel("start_date"),
         FieldPanel("end_date"),
         FieldPanel("registration_url"),

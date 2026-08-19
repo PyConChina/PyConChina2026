@@ -31,6 +31,8 @@ class TalkListPageCityTests(TestCase):
         cls.shanghai = ConferenceCity.objects.create(
             name="Shanghai",
             slug="shanghai",
+            venue="Shanghai venue",
+            map_url="https://example.com/maps/shanghai",
             locale=cls.locale,
             position=10,
         )
@@ -96,4 +98,6 @@ class TalkListPageCityTests(TestCase):
         self.assertContains(response, 'data-city-tab-panel', count=2)
         self.assertContains(response, "Shanghai talk")
         self.assertContains(response, "Beijing talk")
+        self.assertContains(response, 'href="https://example.com/maps/shanghai"')
+        self.assertContains(response, 'class="city-map-link"', count=1)
         self.assertNotContains(response, "Shanghai lightning talk")

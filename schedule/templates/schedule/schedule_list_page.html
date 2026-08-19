@@ -55,7 +55,7 @@
                     <p>
                         {% if group.city.start_date or group.city.venue %}
                             {% if group.city.start_date %}<time datetime="{{ group.city.start_date|date:'Y-m-d' }}">{{ group.city.start_date|date:"Y-m-d" }}</time>{% endif %}
-                            {% if group.city.venue %}<span>{{ group.city.venue }}</span>{% endif %}
+                            {% include "components/city_venue.html" with city=group.city %}
                         {% else %}
                             <span>{% translate "Date and venue to be announced." %}</span>
                         {% endif %}

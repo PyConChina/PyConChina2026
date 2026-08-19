@@ -42,6 +42,8 @@ class ScheduleListPageCityTests(TestCase):
         cls.shanghai = ConferenceCity.objects.create(
             name="Shanghai",
             slug="shanghai",
+            venue="Shanghai venue",
+            map_url="https://example.com/maps/shanghai",
             locale=cls.locale,
             position=10,
         )
@@ -119,4 +121,6 @@ class ScheduleListPageCityTests(TestCase):
         self.assertContains(response, "Shanghai talk")
         self.assertContains(response, "Registration")
         self.assertContains(response, "Main Hall")
+        self.assertContains(response, 'href="https://example.com/maps/shanghai"')
+        self.assertContains(response, 'class="city-map-link"', count=1)
         self.assertContains(response, "grid-template-columns: repeat(1, 1fr)")
