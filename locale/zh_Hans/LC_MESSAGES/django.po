@@ -71,6 +71,9 @@ msgstr "结束日期不得早于开始日期。"
 msgid "Date and venue to be announced."
 msgstr "时间和场地待公布。"
 
+msgid "Venue to be announced."
+msgstr "场地待公布。"
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "页面未找到"

@@ -44,11 +44,17 @@
             data-city-tab-panel
         >
             <header class="city-section-header">
-                <h2 id="city-{{ group.city.slug }}-title">{{ group.city.name }}</h2>
-                <p>
-                    {% if group.city.start_date or group.city.venue %}
-                        {% if group.city.start_date %}<time datetime="{{ group.city.start_date|date:'Y-m-d' }}">{{ group.city.start_date|date:"Y-m-d" }}</time>{% endif %}
+                <div class="talk-city-title-row">
+                    <h2 id="city-{{ group.city.slug }}-title">{{ group.city.name }}</h2>
+                    {% if group.city.start_date %}
+                        <time class="talk-city-date" datetime="{{ group.city.start_date|date:'Y-m-d' }}">{{ group.city.start_date|date:"Y-m-d" }}</time>
+                    {% endif %}
+                </div>
+                <p class="talk-city-venue">
+                    {% if group.city.venue %}
                         {% include "components/city_venue.html" with city=group.city %}
+                    {% elif group.city.start_date %}
+                        <span>{% translate "Venue to be announced." %}</span>
                     {% else %}
                         <span>{% translate "Date and venue to be announced." %}</span>
                     {% endif %}

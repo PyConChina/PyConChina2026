@@ -11,6 +11,8 @@
 .talk-poster-button:focus-visible { outline:3px solid var(--paper); outline-offset:3px; }
 /* Panel look comes from the shared .content-panel/.talk-content rule in pycon.css. */
 .talk-content { margin-bottom:30px; }
+.talk-city-title-row { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px; }
+.talk-city-date { font-weight:700; white-space:nowrap; }
 .talk-list-item { margin-bottom:28px; }
 .talk-list-title { color:var(--accent); font-size:1.45em; }
 .talk-list-title a { color:inherit; text-decoration:none; }

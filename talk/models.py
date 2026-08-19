@@ -83,10 +83,10 @@ class TalkPage(RoutablePageMixin, Page):
 
     @path("poster/")
     def poster(self, request):
-        from talk.utils import render_poster
+        from talk.utils import POSTER_CACHE_VERSION, render_poster
 
         response = HttpResponse(content_type="image/png")
-        key = f"talk_poster_{self.pk}"
+        key = f"talk_poster_v{POSTER_CACHE_VERSION}_{self.pk}"
         if (image_bytes := cache.get(key, None)) is None:
             img = render_poster(self)
             image_buffer = io.BytesIO()

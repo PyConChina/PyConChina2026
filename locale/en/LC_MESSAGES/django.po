@@ -71,6 +71,9 @@ msgstr "End date must not be earlier than start date."
 msgid "Date and venue to be announced."
 msgstr "Date and venue to be announced."
 
+msgid "Venue to be announced."
+msgstr "Venue to be announced."
+
 #: pycon/templates/404.html:4 pycon/templates/404.html:18
 msgid "Page not found"
 msgstr "Page not found"
