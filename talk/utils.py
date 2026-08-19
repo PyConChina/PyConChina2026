@@ -1,38 +1,39 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
+from django.contrib.staticfiles import finders
 from PIL import Image, ImageDraw, ImageFont
 
 if TYPE_CHECKING:
     from talk.models import TalkPage
 
 
-STATIC_PATH = Path(__file__).resolve().parent / "static"
+def get_static_asset_path(relative_path: str) -> Path:
+    asset_path = finders.find(relative_path)
+    if not asset_path:
+        raise FileNotFoundError(f"Static asset not found: {relative_path}")
+    if isinstance(asset_path, (list, tuple)):
+        asset_path = asset_path[0]
+    return Path(asset_path)
 
 
 def render_poster(talk: TalkPage) -> Image.Image:
-    from talk.models import Author
+    """Render a shareable image for a talk."""
 
-    """生成演讲海报图片"""
-    # 创建画布
     font_size = 60
     padding = (100, 150)
-    with Image.open(STATIC_PATH / "images/background.jpg") as image:
+    regular_font_path = get_static_asset_path("fonts/AlibabaPuHuiTi-Regular.otf")
+    bold_font_path = get_static_asset_path("fonts/AlibabaPuHuiTi-Bold.otf")
+
+    with Image.open(get_static_asset_path("images/background.jpg")) as image:
         img = image.copy()
 
     draw = ImageDraw.Draw(img)
-    draw.textbbox
-    font = ImageFont.truetype(
-        STATIC_PATH / "fonts/AlibabaPuHuiTi-Regular.otf", font_size
-    )
-    title_font = ImageFont.truetype(
-        STATIC_PATH / "fonts/AlibabaPuHuiTi-Bold.otf", font_size * 1.6
-    )
-    footer_font = ImageFont.truetype(
-        STATIC_PATH / "fonts/AlibabaPuHuiTi-Regular.otf", font_size * 0.8
-    )
+    font = ImageFont.truetype(regular_font_path, font_size)
+    title_font = ImageFont.truetype(bold_font_path, font_size * 1.6)
+    footer_font = ImageFont.truetype(regular_font_path, font_size * 0.8)
 
     is_cjk = talk.locale.language_code.startswith("zh")
 
@@ -41,10 +42,8 @@ def render_poster(talk: TalkPage) -> Image.Image:
     )
     draw.text((padding[0], 350), title_text, font=title_font, fill="black")
 
-    if author := cast(Author, talk.authors.first()):
-        author_font = ImageFont.truetype(
-            STATIC_PATH / "fonts/AlibabaPuHuiTi-Bold.otf", font_size
-        )
+    if author := talk.authors.first():
+        author_font = ImageFont.truetype(bold_font_path, font_size)
         draw.text((450, 100), author.name, font=author_font, fill="black")
         if author.bio:
             draw.text(
@@ -56,7 +55,7 @@ def render_poster(talk: TalkPage) -> Image.Image:
                 fill="black",
             )
 
-    draw.text((padding[0], 980), "PyCon China 2025", font=footer_font, fill="#888888")
+    draw.text((padding[0], 980), "PyCon China 2026", font=footer_font, fill="#888888")
 
     return img
 

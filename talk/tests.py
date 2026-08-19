@@ -101,3 +101,13 @@ class TalkListPageCityTests(TestCase):
         self.assertContains(response, 'href="https://example.com/maps/shanghai"')
         self.assertContains(response, 'class="city-map-link"', count=1)
         self.assertNotContains(response, "Shanghai lightning talk")
+
+    def test_poster_route_returns_png(self):
+        response = self.client.get(
+            "/2026/talks/shanghai-talk/poster/",
+            HTTP_HOST="localhost",
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "image/png")
+        self.assertTrue(response.content.startswith(b"\x89PNG\r\n\x1a\n"))
