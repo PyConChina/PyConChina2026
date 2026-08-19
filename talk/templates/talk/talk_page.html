@@ -6,7 +6,14 @@
 {% endblock %}
 
 {% block og_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
-{% block og_description %}{% if page.abstract %}{{ page.abstract }}{% else %}{{ block.super }}{% endif %}{% endblock %}
+{% block social_description %}
+{% if page.abstract %}
+<meta property="og:description" content="{{ page.abstract }}" />
+<meta name="twitter:description" content="{{ page.abstract }}" />
+{% else %}
+{{ block.super }}
+{% endif %}
+{% endblock %}
 {% block twitter_image %}{{ request.build_absolute_uri }}poster/{% endblock %}
 
 {% block content %}

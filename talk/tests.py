@@ -166,6 +166,10 @@ class TalkListPageCityTests(TestCase):
             response,
             'property="og:description" content="An abstract written for social sharing."',
         )
+        self.assertContains(
+            response,
+            'name="twitter:description" content="An abstract written for social sharing."',
+        )
 
     def test_poster_text_fits_within_bounded_area(self):
         canvas = Image.new("RGB", (800, 400))
