@@ -27,7 +27,7 @@ FROM python:${PYTHON_IMAGE}
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends gettext
 # Add user that will be used in the container.
-RUN useradd wagtail
+RUN useradd --create-home --home-dir /home/wagtail wagtail
 
 # Port used by this container to serve HTTP.
 EXPOSE 8000
