@@ -237,6 +237,47 @@ const initCityTabs = () => {
     });
 };
 
+const initTalkTypeFilters = () => {
+    const tabGroups = document.querySelectorAll('[data-city-tabs]');
+
+    tabGroups.forEach(tabGroup => {
+        const filter = tabGroup.querySelector('[data-talk-type-filter]');
+        const toggle = tabGroup.querySelector('[data-talk-type-toggle]');
+        const panels = Array.from(tabGroup.querySelectorAll('[data-city-tab-panel]'));
+
+        if (!filter || !toggle || panels.length === 0) {
+            return;
+        }
+
+        const activateTalkType = talkType => {
+            panels.forEach(panel => {
+                const items = Array.from(panel.querySelectorAll('[data-talk-type]'));
+                const matchingItems = items.filter(
+                    item => item.dataset.talkType === talkType
+                );
+
+                items.forEach(item => {
+                    item.hidden = item.dataset.talkType !== talkType;
+                });
+
+                panel.querySelectorAll('[data-talk-type-empty]').forEach(emptyState => {
+                    emptyState.hidden = (
+                        emptyState.dataset.talkTypeEmpty !== talkType
+                        || matchingItems.length > 0
+                    );
+                });
+            });
+        };
+
+        toggle.addEventListener('change', () => {
+            activateTalkType(toggle.checked ? 'lightning' : 'keynote');
+        });
+
+        tabGroup.classList.add('has-talk-filter');
+        activateTalkType(toggle.checked ? 'lightning' : 'keynote');
+    });
+};
+
 // 添加浮动动画到特定元素
 const addFloatingAnimation = () => {
     const floatingElements = document.querySelectorAll('.floating-element, .banner h1, .banner p');
@@ -292,6 +333,7 @@ const pageLoadAnimation = () => {
 const initializeEnhancements = () => {
     observeCards();
     initCityTabs();
+    initTalkTypeFilters();
     initSmoothScroll();
     addFloatingAnimation();
     enhanceSearchInput();

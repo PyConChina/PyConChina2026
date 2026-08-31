@@ -33,11 +33,13 @@ class TalkListPage(Page):
 
         return ConferenceCity.objects.filter(locale=self.locale)
 
-    def get_talks(self, city=None):
+    def get_talks(self, city=None, talk_types=None):
+        if talk_types is None:
+            talk_types = (TalkType.KEYNOTE,)
         talks = (
             self.get_children()
             .live()
-            .filter(talkpage__type=TalkType.KEYNOTE)
+            .filter(talkpage__type__in=talk_types)
             .order_by("talkpage__position", "id")
             .specific()
         )
@@ -46,8 +48,9 @@ class TalkListPage(Page):
         return talks
 
     def get_talk_groups(self):
+        listed_talk_types = (TalkType.KEYNOTE, TalkType.LIGHTNING)
         return [
-            {"city": city, "talks": self.get_talks(city)}
+            {"city": city, "talks": self.get_talks(city, listed_talk_types)}
             for city in self.get_cities()
         ]
 

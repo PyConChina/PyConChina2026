@@ -56,8 +56,14 @@ msgstr "View venue on map"
 msgid "Choose a city"
 msgstr "Choose a city"
 
+msgid "Show lightning talks only"
+msgstr "Show lightning talks only"
+
 msgid "Talks will be announced soon."
 msgstr "Talks will be announced soon."
+
+msgid "Lightning talks will be announced soon."
+msgstr "Lightning talks will be announced soon."
 
 msgid "The schedule will be announced soon."
 msgstr "The schedule will be announced soon."

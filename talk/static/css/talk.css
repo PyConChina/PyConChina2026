@@ -13,6 +13,19 @@
 .talk-content { margin-bottom:30px; }
 .talk-city-title-row { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 16px; }
 .talk-city-date { font-weight:700; white-space:nowrap; }
+.talk-type-switcher { display:none; flex-wrap:wrap; gap:12px; margin:0 0 24px; }
+.city-tabs.has-talk-filter .talk-type-switcher { display:flex; }
+.talk-type-toggle { display:inline-flex; min-height:48px; align-items:center; gap:12px; padding:6px 12px; border:2px solid var(--ink); border-radius:9px; background:var(--paper); box-shadow:0 5px 0 color-mix(in srgb,var(--paper) 68%,#000); color:var(--ink); cursor:pointer; touch-action:manipulation; }
+.talk-type-toggle-label { font-weight:700; }
+.talk-type-toggle-input { position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; }
+.talk-type-toggle-track { position:relative; width:66px; height:34px; flex:0 0 auto; border:2px solid var(--ink); border-radius:999px; background:var(--py-yellow); box-shadow:inset 0 -4px 0 color-mix(in srgb,var(--py-yellow) 68%,#000); transition:background-color 180ms ease,box-shadow 180ms ease; }
+.talk-type-toggle-thumb { position:absolute; top:3px; left:4px; width:24px; height:24px; border:2px solid var(--ink); border-radius:50%; background:var(--paper); transition:transform 180ms ease; }
+.talk-type-toggle-input:checked + .talk-type-toggle-track { background:var(--py-red); box-shadow:inset 0 -4px 0 color-mix(in srgb,var(--py-red) 68%,#000); }
+.talk-type-toggle-input:checked + .talk-type-toggle-track .talk-type-toggle-thumb { transform:translateX(30px); }
+.talk-type-toggle-input:focus-visible + .talk-type-toggle-track { outline:3px solid var(--py-blue); outline-offset:3px; }
+.talk-type-toggle:active { box-shadow:0 2px 0 color-mix(in srgb,var(--paper) 68%,#000); transform:translateY(3px); }
+.talk-list-item[hidden],.talk-type-empty[hidden] { display:none; }
+.city-tabs.has-talk-filter .city-empty-all { display:none; }
 .talk-list-item { margin-bottom:28px; }
 .talk-list-title { color:var(--accent); font-size:1.45em; }
 .talk-list-title a { color:inherit; text-decoration:none; }

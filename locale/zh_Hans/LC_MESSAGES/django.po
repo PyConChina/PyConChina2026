@@ -56,8 +56,14 @@ msgstr "在地图中查看场地"
 msgid "Choose a city"
 msgstr "选择城市"
 
+msgid "Show lightning talks only"
+msgstr "仅显示闪电演讲"
+
 msgid "Talks will be announced soon."
 msgstr "演讲主题即将公布。"
+
+msgid "Lightning talks will be announced soon."
+msgstr "闪电演讲即将公布。"
 
 msgid "The schedule will be announced soon."
 msgstr "日程即将公布。"

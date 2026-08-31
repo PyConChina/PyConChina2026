@@ -20,6 +20,22 @@
     {% endif %}
 
     <div class="city-tabs" data-city-tabs>
+        <div class="talk-type-switcher" data-talk-type-filter>
+            <label class="talk-type-toggle">
+                <span class="talk-type-toggle-label">{% translate "Talks" %}</span>
+                <input
+                    class="talk-type-toggle-input"
+                    type="checkbox"
+                    aria-label="{% translate 'Show lightning talks only' %}"
+                    data-talk-type-toggle
+                >
+                <span class="talk-type-toggle-track" aria-hidden="true">
+                    <span class="talk-type-toggle-thumb"></span>
+                </span>
+                <span class="talk-type-toggle-label">{% translate "Lightning" %}</span>
+            </label>
+        </div>
+
         {% with cities=page.get_cities %}
         {% if cities %}
             <nav class="city-switcher" aria-label="{% translate 'Choose a city' %}" data-city-tablist>
@@ -61,7 +77,7 @@
                 </p>
             </header>
             {% for child in group.talks %}
-                <div class="content-panel talk-list-item">
+                <div class="content-panel talk-list-item" data-talk-type="{{ child.specific.type }}">
                     <h3 class="card-header talk-list-title">
                         <a href="{% i18n_url child %}">{{ child.title }}</a>
                         {% include "snippets/badge.html" with page=child.specific %}
@@ -91,8 +107,10 @@
                     </div>
                 </div>
             {% empty %}
-                <p class="content-panel city-empty">{% translate "Talks will be announced soon." %}</p>
+                <p class="content-panel city-empty city-empty-all">{% translate "Talks will be announced soon." %}</p>
             {% endfor %}
+            <p class="content-panel city-empty talk-type-empty" data-talk-type-empty="keynote" hidden>{% translate "Talks will be announced soon." %}</p>
+            <p class="content-panel city-empty talk-type-empty" data-talk-type-empty="lightning" hidden>{% translate "Lightning talks will be announced soon." %}</p>
         </section>
         {% endfor %}
     </div>

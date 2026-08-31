@@ -120,6 +120,18 @@ class TalkListPageCityTests(TestCase):
 
         self.assertNotIn(self.lightning_talk, talks)
 
+    def test_talk_groups_include_lightning_talks_for_filtering(self):
+        shanghai_group = next(
+            group
+            for group in self.talk_list.get_talk_groups()
+            if group["city"] == self.shanghai
+        )
+
+        self.assertEqual(
+            list(shanghai_group["talks"]),
+            [self.shanghai_talk, self.lightning_talk],
+        )
+
     def test_talk_list_renders_city_sections(self):
         response = self.client.get(
             "/2026/talks/", HTTP_HOST="localhost"
@@ -132,9 +144,14 @@ class TalkListPageCityTests(TestCase):
         self.assertContains(response, 'data-city-tab-panel', count=2)
         self.assertContains(response, "Shanghai talk")
         self.assertContains(response, "Beijing talk")
+        self.assertContains(response, "Shanghai lightning talk")
         self.assertContains(response, 'href="https://example.com/maps/shanghai"')
         self.assertContains(response, 'class="city-map-link"', count=1)
-        self.assertNotContains(response, "Shanghai lightning talk")
+        self.assertContains(response, 'data-talk-type-filter')
+        self.assertContains(response, 'data-talk-type-toggle')
+        self.assertContains(response, 'type="checkbox"')
+        self.assertContains(response, 'data-talk-type="keynote"', count=2)
+        self.assertContains(response, 'data-talk-type="lightning"', count=1)
 
         content = response.content.decode()
         city_index = content.index('id="city-shanghai-title"')
