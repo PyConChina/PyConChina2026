@@ -2,14 +2,16 @@ import io
 from datetime import date, time
 from types import SimpleNamespace
 
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
 from PIL import Image, ImageDraw
+from wagtail.images import get_image_model
 from wagtail.models import Locale, Page, Site
 
 from base.models import ConferenceCity
 from home.models import HomePage
 from schedule.models import Room, Schedule, ScheduleListPage
-from talk.models import TalkListPage, TalkPage, TalkType
+from talk.models import Author, TalkListPage, TalkPage, TalkType
 from talk.utils import (
     POSTER_SIZE,
     fit_multiline_text,
@@ -84,6 +86,28 @@ class TalkListPageCityTests(TestCase):
                 position=30,
             )
         )
+        image = get_image_model().objects.create(
+            title="Speaker portrait",
+            file=SimpleUploadedFile(
+                "speaker.gif",
+                b"GIF87a\x01\x00\x01\x00\x80\x01\x00\x00\x00\x00ccc,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02D\x01\x00;",
+                content_type="image/gif",
+            ),
+        )
+        cls.first_speaker = Author.objects.create(
+            name="First speaker",
+            avatar=image,
+            bio="First bio",
+            locale=cls.locale,
+        )
+        cls.second_speaker = Author.objects.create(
+            name="Second speaker",
+            avatar=image,
+            bio="Second bio",
+            locale=cls.locale,
+        )
+        cls.shanghai_talk.authors.add(cls.first_speaker, cls.second_speaker)
+        cls.shanghai_talk.save()
         cls.schedule_list = cls.home.add_child(
             instance=ScheduleListPage(
                 title="Schedule",
@@ -187,6 +211,17 @@ class TalkListPageCityTests(TestCase):
             response,
             'name="twitter:description" content="An abstract written for social sharing."',
         )
+
+    def test_talk_page_renders_authors_without_individual_panels(self):
+        response = self.client.get(
+            "/2026/talks/shanghai-talk/",
+            HTTP_HOST="localhost",
+        )
+
+        self.assertContains(response, 'class="author"', count=2)
+        self.assertNotContains(response, 'class="content-panel author"')
+        self.assertContains(response, "First speaker")
+        self.assertContains(response, "Second speaker")
 
     def test_poster_text_fits_within_bounded_area(self):
         canvas = Image.new("RGB", (800, 400))

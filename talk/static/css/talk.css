@@ -38,7 +38,10 @@
 .speak-by ul { padding:0; list-style:none; }
 .speak-by li { color:var(--ink-soft); }
 .authors { margin:0; padding:0; list-style:none; }
-.author { display:flex; align-items:flex-start; gap:20px; margin-bottom:24px; }
+.author { display:flex; align-items:flex-start; gap:20px; padding:24px 0; }
+.author:first-child { padding-top:0; }
+.author:last-child { padding-bottom:0; }
+.author + .author { border-top:2px dashed var(--gray-pixel); }
 .author > div:first-child { flex:1; }
 .author-info { display:flex; flex-wrap:wrap; align-items:baseline; gap:12px; }
 .author-name { color:var(--accent); font-size:1.4em; font-weight:700; }
